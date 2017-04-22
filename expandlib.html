@@ -22,7 +22,7 @@ glaux是OpenGL辅助库，包含有31个函数，函数名前缀为aux。这部�
     <hr>
     <h3> 常见的OpenGL头文件如下：</h3>  
 
-    <li> [GL/gl.h]：OpenGL所使用的函数和常量声明。</p>  
+    <li> [GL/gl.h]：OpenGL所使用的函数和常量声明。</li>  
     <li> [GL/glu.h]：GLU（OpenGL实用库）所使用的函数和常量声明。GLU库属于OpenGL标准的一部分。（以下各种库则不属于） </li>
     <li> [GL/glaux.h]：GLAUX（OpenGL辅助库）所使用的函数和常量声明。这个库提供了创建窗口，处理键盘和鼠标事件，设置调色板等OpenGL本身不提供，但在编写OpenGL程序时又经常用到的功能。目前这个库已经过时，只有比较少的编译环境中有提供，例如VC系列。在VC系列编译器中，使用这个头文件之前必须使用#include <windows.h>或者具有类似功能的头文件。</li>
     <li> [GL/glut.h]：GLUT（OpenGL实用工具包）所使用的函数和常量声明。这个库的功能大致与GLAUX类似，目前许多OpenGL教程使用这个库来编写演示程序。一些编译系统可能不直接提供这个库（例如VC系列），需要单独下载安装。这个头文件自动包含了<GL/gl.h>和<GL/glu.h>，编程时不必再次包含它们。 </li>
