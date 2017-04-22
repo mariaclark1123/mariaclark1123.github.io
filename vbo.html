@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<head>
+  <title>OpenGL - VBO</title>
+</head>
+<html>
+<body>
+<hr>
+<h1>OpenGL - VBO</h1>
+<hr>
+  <ul>
+    <p> 
+ 为了加快显示速度，显卡增加了一个扩展，即VBO。它本质上是存储几何数据的缓存。它直接把顶点数据放置到显卡中的高速缓存，极大提高了绘制速度。这个扩展用到ARB_vertex_buffer_object，它可以直接像顶点数组那样使用。唯一不同的地方在于它需要将数据载入显卡的高效缓存，因此需要占用渲染时间。   
+    </p>
+    
+    <br>
+    <p>
+初始化阶段：
+    </p>
+    <li> 1. glGenBuffersARB(1, &nVBOVertices); //生成一个句柄</li>
+    <li> 2. glBindBufferARB(GL_ARRAY_BUFFER_ARB, nVBOVertices); //声明该句柄为一个vbo句柄，并选择之 </li>
+    <li> 3. glBufferDataARB(GL_ARRAY_BUFFER_ARB, sizeof(vertices), vertices, GL_STATIC_DRAW); //将顶点集上传至server端</li>
+    
+    <br>  
+    <p>
+使用阶段：
+    </p>
+    <li> 1. glEnableClientState(GL_VERTEX_ARRAY); //开始使用vbo</p>  
+    <li> 2. glBindBufferARB(GL_ARRAY_BUFFER_ARB, nVBOVertices);  //选择当前使用的vbo </li>
+    <li> 3. glVertexPointer(3, GL_FLOAT, 0, BUFFER_OFFSET(0));  //指定vbo顶点格式</li>
+    <li> 4. glDrawArrays( GL_TRIANGLES, 0, g_pMesh->m_nVertexCount ); //画吧 </li>
+    <li> 5. glDisableClientState(GL_VERTEX_ARRAY); //停止使用vbo </li>
+   
+    <br> 
+    <p>
+收尾阶段：
+    </p>
+    <li> 1. glDeleteBuffersARB(1,&nVBOVertices); //删除句柄，同时删除server端顶点缓冲</li>
+    
+    <hr>
+    <p>
+再来看看纹理缓冲是怎么使用的，其实差不多：
+    </p>
+    <p>
+初始化阶段：
+    </p>
+    <li> 1. glGenTextures(1, &texID);//创建句柄</li>
+    <li> 2. glBindTexture(GL_TEXTURE_2D, texID); //设置句柄类型</li>
+    <li> 3. glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->GetWidth(), img->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, raw_rgba); //上传纹理缓冲</li>
+    
+    <br>  
+    <p>
+使用阶段：
+    </p>
+    <li> 1. glEnable(GL_TEXTURE_2D); //开始使用纹理缓冲</p>  
+    <li> 2. glBindTexture(GL_TEXTURE_2D, texID); //选择当前使用的纹理缓冲 </li>
+    <li> 3. 发送顶点和纹理坐标，画吧...省略</li>
+    <li> 4. glDisable(GL_TEXTURE_2D); //停止使用纹理 </li>
+    
+    <br> 
+    <p>
+收尾阶段：
+    </p>
+    <li> 1. glDeleteTextures(1,&texID);//删除句柄,，同时删除server端缓冲</li>
+    <br>
+  
+    <hr>
+    <h3>参考文章</h3>
+    <li><a href = "http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=45">一个使用VBO扩展的例子程序:NEHE教程第45讲 </a></li>
+    <li><a href = "http://hi.baidu.com/excerpts/blog/item/dde4e0ceeeee8c0692457e54.html">VBO操作相关的函数 </a></li>
+    <li><a href = "http://www.cppblog.com/w2001/archive/2008/05/10/49376.aspx">VBO扩展的用法流程，总结出与纹理用法流程的相似性 </a></li>
+    <li><a href = "http://www.songho.ca/opengl/gl_vbo.html ">Opengl Vertex Buffer Object</a></li>
+    <hr>
+    <p><a href = "http://blog.sina.com.cn/s/blog_4062094e0100aluv.html">本文转自保持快乐保持健康博客博客：http://blog.sina.com.cn/s/blog_4062094e0100aluv.html</a></p>
+  </ul>
+
+</body>
+</html>
