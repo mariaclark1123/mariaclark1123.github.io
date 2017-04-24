@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<title>z-Buffer Algorithm</title>
+<h2>The z-Buffer Algorithm<br>
+<h4>The z-Buffer algorithm is one of the most commonly used routines. It is simple, easy to implement, and is often found in hardware. <br><br>
+The idea behind it is uncomplicated: Assign a z-value to each polygon and then display the one (pixel by pixel) that has the smallest value.
+<br>
+<br>
+<hr>
+<h3>
+There are some advantages and disadvantages to this:
+</h3>
+<br>Advantages:
+<br><h4><li>Simple to use
+<br><li>Can be implemented easily in object or image sapce
+<br><li>Can be executed quickly, even with many polygons
+<br><h3>Disadvantages:
+<br><h4><li>Takes up a lot of memory
+<br><li>Can't do transparent surfaces without additional code
+<br><hr>
+<h3>For example:<br>
+<br>
+<img align=left src="example4.gif">
+<img align=right src="example5.gif">
+<br><br><br><br>
+<h3>Consider these two polygons (right:edge-on left:head-on)   
+<br>The computer would start (arbitrarily) with Polygon 1 and put it's depth value into the buffer. It would do the same for the next polygon, P2. <br>
+It will then check each overlapping pixel and check to see which one is closer to the viewer, and display the appropriate color.
+<br><br> This is a simplistic example, but the basic ideas are valid for polygons in any orientation and permutation (this algorithm will properly display polygons piercing one another, and polygons with conflicting depths, such as:
+<br>
+<img align=right src="example6.gif">
+<br><br><br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+</html>
