@@ -1,31 +1,25 @@
 <title>z-Buffer Algorithm</title>
-<h2>The z-Buffer Algorithm<br>
-<h4>The z-Buffer algorithm is one of the most commonly used routines. It is simple, easy to implement, and is often found in hardware. <br><br>
-The idea behind it is uncomplicated: Assign a z-value to each polygon and then display the one (pixel by pixel) that has the smallest value.
+<h1>The z-Buffer Algorithm</h1>
 <br>
+<p>The z-Buffer algorithm is one of the most commonly used routines. It is simple, easy to implement, and is often found in hardware.</p> 
+<p>The idea behind it is uncomplicated: Assign a z-value to each polygon and then display the one (pixel by pixel) that has the smallest value.</p>
 <br>
 <hr>
 <h3>
 There are some advantages and disadvantages to this:
-<br>Advantages:
 <br>
-<h4>
-<li>Simple to use
+Advantages:</h3>
 <br>
-<li>Can be implemented easily in object or image sapce
+<li>Simple to use</li>
+<li>Can be implemented easily in object or image sapce</li>
+<li>Can be executed quickly, even with many polygons</li>
 <br>
-<li>Can be executed quickly, even with many polygons
+<h3>Disadvantages:</h3>
 <br>
-<h3>Disadvantages:
-<br>
-<h4>
-<li>Takes up a lot of memory
-<br>
-<li>Can't do transparent surfaces without additional code
-<br>
+<li>Takes up a lot of memory</li>
+<li>Can't do transparent surfaces without additional code</li>
 <hr>
-<h3>For example:
-<br>
+<h3>For example:</h3>
 <br>
 <img align=left src="example4.gif">
 <img align=right src="example5.gif">
@@ -33,13 +27,9 @@ There are some advantages and disadvantages to this:
 <br>
 <br>
 <br>
-<h3>Consider these two polygons (right:edge-on left:head-on)   
-<br>The computer would start (arbitrarily) with Polygon 1 and put it's depth value into the buffer. It would do the same for the next polygon, P2. <br>
-It will then check each overlapping pixel and check to see which one is closer to the viewer, and display the appropriate color.
+<h3>Consider these two polygons (left:head-on, right:edge-on)</h3>   
+<p>The computer would start (arbitrarily) with Polygon 1 and put it's depth value into the buffer. It would do the same for the next polygon, P2. It will then check each overlapping pixel and check to see which one is closer to the viewer, and display the appropriate color.</p>
 <br>
-<br> This is a simplistic example, but the basic ideas are valid for polygons in any orientation and permutation (this algorithm will properly display polygons piercing one another, and polygons with conflicting depths, such as:
+<p> This is a simplistic example, but the basic ideas are valid for polygons in any orientation and permutation (this algorithm will properly display polygons piercing one another, and polygons with conflicting depths, such as:</p>
 <br>
 <img align=right src="example6.gif">
-<br>
-<br>
-<hr>
