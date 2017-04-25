@@ -20,8 +20,8 @@ html, body {width:100%;height:100%;}
         <hr>
         <br>
         <h3>Vertex Buffer Object (VBO)</h3>
-        <p> - Allows vertex array data to be stored in the device memory</p>
-        <p> - GL_ARB_vertex_buffer_object</p>
+        <p style="color:red;"> - Allows vertex array data to be stored in the device memory</p>
+        <p style="color:red;"> - GL_ARB_vertex_buffer_object</p>
         <br>
         <p>
             为了加快显示速度，显卡增加了一个扩展，即VBO。它本质上是存储几何数据的缓存。它直接把顶点数据放置到显卡中的高速缓存，极大提高了绘制速度。这个扩展用到ARB_vertex_buffer_object，它可以直接像顶点数组那样使用。唯一不同的地方在于它需要将数据载入显卡的高效缓存，因此需要占用渲染时间。
@@ -40,12 +40,11 @@ html, body {width:100%;height:100%;}
             <p>
                 使用阶段：
             </p>
-            <li> 1. glEnableClientState(GL_VERTEX_ARRAY); //开始使用vbo</p>
+            <li> 1. glEnableClientState(GL_VERTEX_ARRAY); //开始使用vbo</li>
                 <li> 2. glBindBufferARB(GL_ARRAY_BUFFER_ARB, nVBOVertices); //选择当前使用的vbo </li>
                 <li> 3. glVertexPointer(3, GL_FLOAT, 0, BUFFER_OFFSET(0)); //指定vbo顶点格式</li>
                 <li> 4. glDrawArrays( GL_TRIANGLES, 0, g_pMesh->m_nVertexCount ); //画吧 </li>
                 <li> 5. glDisableClientState(GL_VERTEX_ARRAY); //停止使用vbo </li>
-        </ul>
         <br>
         <p>
             收尾阶段：
@@ -76,20 +75,17 @@ html, body {width:100%;height:100%;}
             使用阶段：
         </p>
         <ul>
-            <li> 1. glEnable(GL_TEXTURE_2D); //开始使用纹理缓冲</p>
-                <li> 2. glBindTexture(GL_TEXTURE_2D, texID); //选择当前使用的纹理缓冲 </li>
-                <li> 3. 发送顶点和纹理坐标，画吧...省略</li>
-                <li> 4. glDisable(GL_TEXTURE_2D); //停止使用纹理 </li>
-        </ul>
-
-
-        <br>
+            <li> 1. glEnable(GL_TEXTURE_2D); //开始使用纹理缓冲</li>
+            <li> 2. glBindTexture(GL_TEXTURE_2D, texID); //选择当前使用的纹理缓冲 </li>
+            <li> 3. 发送顶点和纹理坐标，画吧...省略</li>
+            <li> 4. glDisable(GL_TEXTURE_2D); //停止使用纹理 </li>        <br>
         <p>
             收尾阶段：
         </p>
         <li> 1. glDeleteTextures(1,&texID);//删除句柄,，同时删除server端缓冲</li>
         <br>
-
+        </ul>
+            
         <hr>
         <h3>参考文章</h3>
         <ul>
@@ -100,10 +96,8 @@ html, body {width:100%;height:100%;}
 
         <hr>
         <p><a href="http://blog.sina.com.cn/s/blog_4062094e0100aluv.html">本文转自保持快乐保持健康博客博客：http://blog.sina.com.cn/s/blog_4062094e0100aluv.html</a></p>
-
+    </ul>
     </div>
-
-
 </body>
 <script src="js/js.js"></script>
 </html>
