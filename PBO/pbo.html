@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <title>OpenGL - PBO</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /** {padding:0;margin:0;}
+html, body {width:100%;height:100%;}
+.container {width:960px;margin:0 auto;}*/
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <hr>
+        <h1>OpenGL - PBO</h1>
+        <hr>
+        <br>
+        <h3>Pixel Buffer Object (PBO)</h3>
+        <p style="color:red;"> - Allows pixel data to be stored in the device memory for further intra-GPU transfer</p>
+        <p style="color:red;"> - GL_ARB_pixel_buffer_object</p>
+        <br>
+        <p> Can be considered as an extension of VBO. But instead of storing vertex data, it stores pixel data. Pixel data can be managed more efficiently via PBO</p>
+        <br>
+        <p>PBO,即Pixel Buffer Object也是用于GPU的扩展（ARB_vertex_buffer_object）。这里的缓存当然就是GPU的缓存。PBO与VBO扩展类似，只不过它存储的是像素数据而不是顶点数据。PBO借用了VBO框架和所有API函数形式，并加了上两个"target"标志。这两个标识是：</p>
+<ul>
+<li>GL_PIXEL_PACK_BUFFER_ARB 将像素数据传给PBO</li>
+<li>GL_PIXEL_UNPACK_BUFFER_ARB 从PBO得到像素数据</li>
+</ul>
+<br>
+<p>这里的“pack”还是“unpack”，可分别理解为“传给”和“得到”。它们也都可以统一理解为“拷贝”，也就是像素数据的“传递”。比如说，glReadPixel就是数据从帧缓存（framebuffer）到内存（memory），可理解为“pack”；glDrawPixel是从内存到帧缓存，可理解为“unpack”；glGetTexImage是从纹理对象到内存，可理解为“pack”；glTexImage2d从内存（memory）到纹理对象（texture object），可理解为“unpack”。</p>
+<br>
+<p>下图是PBO与Framebuffer和Text对象之间的传递。</p>
+<img align=left src="pbo1.jpg">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p> 使用PBO的好处是快速的像素数据传递，它采用了一种叫DMA（Direct Memory Access）的技术，无需CPU介入。另一个PBO的优点是，这种DMA是异步的。我们可以通过下面两张图来比较使用PBO的与传统的纹理传递的过程。</p>
+<p>
+图2是用传统的方法从图像源（如图像文件或视频）载入图像数据到纹理对象的过程。像素数据首先存到系统内存中，接着使用glTexImage2D将数据从系统内存拷贝到纹理对象。包含的两个子过程均需要有CPU执行。而从图3中，我们可以看到像素数据直接载入到PBO中，这个过程仍需要CPU来执行，但是从数据从PBO到纹理对象的过程则由GPU来执行DMA，而不需要CPU参与。而且opengl可安排异步DMA，不必马上进行像素数据的传递。因此，相比而言，图3中的glTexImage2D立即返回而不是马上执行，这样CPU可以执行其它的操作而不需要等待像素数据传递的结束。</p>
+<br>
+<img align=middle src="pbo2.jpg">
+<p>图2 不使用PBO的纹理载入</p>
+<br>
+<br>
+<img align=middle src="pbo3.jpg">
+<p>图3 使用PBO的纹理载入</p>
+<br>
+
+        <hr>
+        <br>
+        <p>
+            ...Be continued
+        </p>
+            
+        <hr>
+        <br>
+        <h3>参考文章</h3>
+        <ul>
+            <li><a href="http://www.songho.ca/opengl/gl_pbo.html">OpenGL Pixel Buffer Object (PBO)</a></li>
+            <li><a href="http://hacksoflife.blogspot.kr/2006/10/vbos-pbos-and-fbos.html">VBOs, PBOs and FBOs</a></li>
+        </ul>
+
+        <hr>
+        <br>
+        <p><a href="http://blog.sina.com.cn/s/blog_4062094e0100alvt.html">本文转自保持快乐保持健康博客博客：http://blog.sina.com.cn/s/blog_4062094e0100alvt.html</a></p>
+    </ul>
+    </div>
+</body>
+<script src="js/js.js"></script>
+</html>

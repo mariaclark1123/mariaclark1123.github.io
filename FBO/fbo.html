@@ -17,8 +17,8 @@ html, body {width:100%;height:100%;}
         <h1>OpenGL - FBO</h1>
         <hr>
         <br>
-        <h3>Pixel Buffer Object (PBO)</h3>
-        <p style="color:red;"> - Aallows rendered contents (color, depth, stencil(模板)) to be stored in non-displayable framebuffers (e.g., texture object, renderbuffer object)</p>
+        <h3>Frame Buffer Object (FBO)</h3>
+        <p style="color:red;"> - Allows rendered contents (color, depth, stencil(模板)) to be stored in non-displayable framebuffers (e.g., texture object, renderbuffer object)</p>
         <p style="color:red;"> - GL_EXT_framebuffer_object</p>
         <br>
         <p>在OpenGL渲染流水线上，几何数据和纹理数据被多次转换、多次测试，最后以2维像素的形式显示在屏幕上。而OpenGL流水线上最后显示阶段像素所在处，称为帧缓存。帧缓存可视为2维数组，或OpenGL使用的存储区域，它包括了：颜色缓存、深度缓存、模板缓存和累积缓存。</p>
