@@ -26,8 +26,11 @@ html, body {width:100%;height:100%;}
 在OpenGL扩展中，GL_EXT_framebuffer_object提供了另外一种不能够显示的帧缓存接口，帧缓存对象（FBO）。这种帧缓存称之为“应用生成”帧缓存，以区别于“window系统生成”帧缓存。通过使用帧缓存对象（FBO），OpenGL应用程序可以将显示内容输出到“应用生成”帧缓存，而不是传统的“window系统生成”帧缓存。这个过程全部由OpenGL控制。和window系统提供的帧缓存一样，FBO也有一组相应存储颜色、深度和模板（注意没有累积）数据的缓存区域。我们把FBO中存储这些数据的区域称之为“缓存关联图像”（framebuffer-attached image）。它完全由OpenGL管理控制。</p>
 <p>缓存关联图像分为两类：纹理缓存和渲染（显示）缓存（renderbuffer）。如果纹理对象的图像数据关联到帧缓存，opengl执行的将是“渲染到纹理”（render to texture）操作。如果渲染缓存对象的图像数据关联到帧缓存，opengl执行的将是“离线渲染”（offscreen rendering）。渲染缓存对象是GL_EXT_framebuffer_object中定义的新的一种存储类型。这用于渲染过程中存储单幅2维图像。下面的图1描述了FBO、纹理对象和渲染缓存对象之间的关系。</p>
 <br>
+<br>
+<br>
+<p>
 <img align=left src="fbo1.jpg">
-<p>从图中可以看出，FBO有多个颜色关联：(GL_COLOR_ATTACHMENT0_EXT,..., GL_COLOR_ATTACHMENTn_EXT), 一个深度关联(GL_DEPTH_ATTACHMENT_EXT)和一个模板关联 (GL_STENCIL_ATTACHMENT_EXT)。颜色关联的数目最少有一个，最大数目是与实体的显卡相关的，可以GL_MAX_COLOR_ATTACHMENTS_EXT查询得到。FBO采用多个颜色关联，这样可以同时将多个颜色缓存渲染（绘制）到多个FBO关联存储区，即“多渲染目标”MRT（multiple render target）。MRT可用GL_ARB_draw_buffers完成。<p>
+从图中可以看出，FBO有多个颜色关联：(GL_COLOR_ATTACHMENT0_EXT,..., GL_COLOR_ATTACHMENTn_EXT), 一个深度关联(GL_DEPTH_ATTACHMENT_EXT)和一个模板关联 (GL_STENCIL_ATTACHMENT_EXT)。颜色关联的数目最少有一个，最大数目是与实体的显卡相关的，可以GL_MAX_COLOR_ATTACHMENTS_EXT查询得到。FBO采用多个颜色关联，这样可以同时将多个颜色缓存渲染（绘制）到多个FBO关联存储区，即“多渲染目标”MRT（multiple render target）。MRT可用GL_ARB_draw_buffers完成。<p>
 <p style="color:red;">注意：FBO本身并没有图像数据存储区，只有多个关联。</p>
 <br>
 <p> FBO提供了一种高效的切换机制：将前一个帧缓存关联图像从FBO分离，将一个新的可关联帧缓存图像与FBO关联。FBO对帧缓存关联图像的切换要比对FBO的切换速度更快。用glFramebufferTexture2DEXT()，可以进行二维纹理对象的切换，用glFramebufferRenderbufferEXT可切换渲染缓存对象。</p>
