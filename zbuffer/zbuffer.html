@@ -14,6 +14,7 @@
 <p>The idea behind it is uncomplicated: Assign a z-value to each polygon and then display the one (pixel by pixel) that has the smallest value.</p>
 <br>
 <hr>
+<br>
 <h3>Advantages:</h3>
     <ul>
         <li>Simple to use</li>
@@ -26,26 +27,19 @@
         <li>Takes up a lot of memory</li>
         <li>Can't do transparent surfaces without additional code</li>
     </ul>
+        <br>
         <hr>
+        <br>
         <h3>For example:</h3>
-        <br>
-        <img align=left src="example4.gif">
-        <img align=right src="example5.gif">
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="example4.gif"></div>
+        <div class = "clearfix"><img align=left src="example5.gif"></div>
         <p>Consider these two polygons (left:head-on, right:edge-on)</p>
         <p>The computer would start (arbitrarily) with Polygon 1 and put it's depth value into the buffer. It would do the same for the next polygon, P2. It will then check each overlapping pixel and check to see which one is closer to the viewer, and display the appropriate color.</p>
+        <br>
         <p> This is a simplistic example, but the basic ideas are valid for polygons in any orientation and permutation (this algorithm will properly display polygons piercing one another, and polygons with conflicting depths, such as:</p>
         <br>
-        <img align=left src="example6.gif">
+        <div class="clearfix"><img align=left src="example6.gif"></div>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-</div>
+    </div>
 </body>
 </html>
