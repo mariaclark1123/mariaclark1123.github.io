@@ -17,40 +17,8 @@
             OpenGL场景中模型颜色的产生，大致为如下的流程图所描述：
         </p>
         <br>
-        <p><img align=left src="example1.png"></p>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="example1.png"></div>
+    
         <p style="color:red;">(1) 当不开启光照时，使用顶点颜色来产生整个表面的颜色 (ex: glColor3f(1,0,1.0,1.0))</p>
         <p>用glShadeModel可以设置表面内部像素颜色产生的方式: GL_FLAT/GL_SMOOTH.</p>
         <br>
@@ -58,12 +26,9 @@
         <p style="color:red;">(2)一般而言，开启光照后，在场景中至少需要有一个光源（GL_LIGHT0...GL_LIGHT7）</p>
         <p>通过glEnable(GL_LIGHT0)  glDisable(GL_LIGHT0) 来开启和关闭指定的光源。</p>
         <p>---  全局环境光 ---</p>
-        <p><img align=left src="step2.png"></p>
+        <div class = "clearfix"><img align=left src="step2.PNG"></div>
         <br>
-        <br>
-        <br>
-        <br>
-
+        
         <p style="color:red;">(3)设置光源的光分量  -- 环境光/漫色光/镜面光</p>
         <p> 默认情况下：</p>
         <ul>
@@ -72,96 +37,33 @@
             <li>GL_LIGHT1...GL_LIGHT7 的GL_DIFFUSE和GL_SPECULAR值为(0.0, 0.0, 0.0, 0.0)。</li>
         </ul>
         <p> 所以我们需要自己定义光源的光分量：</p>
-        <p><img align=left src="step3.png"></p>
+        <div class = "clearfix"><img align=left src="step3.PNG"></div>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
+       
         <p style="color:red;">(4)设置光源的位置和方向</p>
         <p> -- 平行光 --         没有位置只有方向 (w = 0)</p>
-        <p><img align=left src="step4-1.png"></p>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="step4-1.PNG"></div>
         <br>
 
         <p> -- 点光源 --          有位置没有方向 (w != 0)</p>
-        <p><img align=left src="step4-2.png"></p>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="step4-2.PNG"></div>
         <br>
 
         <p> -- 聚光灯 --          有位置有方向 (w != 0)</p>
-        <p>
-            <img align=left src="spotlight.png">
-        </p>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <img align=left src="step4-3.png">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="spotlight.png"></div>
+        <div class = "clearfix"><img align=left src="step4-3.PNG"></div>
         <br>
         <p style="color:red;">** 平行光不会随着距离d增加而衰减，但点光源和聚光灯会发生衰减 **</p>
-        <img align=left src="atten_eq.png">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="atten_eq.png"></div>
         <p>attenuation为衰变系数，系数值越大，衰变越快。</p>
         <p> 默认情况下，c=1.0, l=0.0, q=0.0</p>
-        <img align=left src="atten_pic.png">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="atten_pic.png"></div>
         <p>可以自定义衰变函数的系数</p>
-        <img align=left src="step4-4.png">
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="step4-4.PNG"></div>
         <br>
 
         <p style="color:red;">(5)设置材质属性</p>
-        <p>环境光、散射光不受视点位置的影响。物体看起来是什么颜色，很大程度上地受到散射光的影响，环境光反射也对物体的颜色有一定的影响。
-      因为当光直射物体时，散射光最强；非直射时，环境光效果明显。对于真实的世界中的物体，其散射光与环境光通常是同一个颜色。
-      物体的镜面反射会在物体表面产生一个高亮区。观察者所看到的镜面反射依赖于视点位置 -- 沿着反射光的方向亮度最高。</p>
+        <p>环境光、散射光不受视点位置的影响。物体看起来是什么颜色，很大程度上地受到散射光的影响，环境光反射也对物体的颜色有一定的影响。 因为当光直射物体时，散射光最强；非直射时，环境光效果明显。对于真实的世界中的物体，其散射光与环境光通常是同一个颜色。物体的镜面反射会在物体表面产生一个高亮区。观察者所看到的镜面反射依赖于视点位置 -- 沿着反射光的方向亮度最高。</p>
         <br>
         <p>默认情况下:</p>
         <ul>
@@ -171,35 +73,15 @@
             <li>材质的GL_SHININESS值为0.0【取值范围为[0.0, 128.0]，数值越大，高亮区越小，亮度越高】</li>
             <li>材质的GL_GL_EMISSION值为(0.0, 0.0, 0.0, 1.0)</li>
         </ul>
-        <p><img align=left src="step5.png"></p>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="step5.PNG"></div>
         <br>
 
         <p style="color:red;">(6)颜色材质模式</p>
         <p>
             使用颜色材质可以用较小的代价，快速改变场景中模型的颜色。其具体用法如下：
         </p>
-        <p><img align=left src="step6.png"></p>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div class = "clearfix"><img align=left src="step6.PNG"></div>
         <br>
         <hr>
         <h3>参考文章</h3>
