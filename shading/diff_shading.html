@@ -21,7 +21,7 @@
             <li> Phong Shading</li>
         </ul>
         <p>Gouraud Shading由于其渲染较快，效果也不错，所以成为PC最常用的着色方法。而近年来，随着GPU快速的发展，Phong Shading也逐渐应用在更真实的着色场景中。我们可以通过下图看出三者的效果差异：</p>
-        <div class="clearfix"><img align=middle src="example1.png"></div>
+        <div class="clearfix"><img align=middle src="example1.PNG"></div>
         <p>
             从左到右分别是：Flat Shading -> Gouraud Shading -> Phong Shading
         </p>
@@ -35,7 +35,7 @@
         </ul>
         <p> Flat Shading's Code Example</p>
         <div class="clearfix"><img align=middle src="flat_code.PNG"></div>
-
+        <br>
         <p> 2. Gouraud Shading:</p>
         <ul>
             <li> Enable with glShadeModel(GL_SMOOTH);</li>
@@ -43,7 +43,7 @@
             <li> Interpolate the vertex color for the interior</li>
             <li> Assessment: Better image; More expensive to calculate than flat shading</li>
         </ul>
-       
+        <br>
         <p> 3. Phong Shading:</p>
         <ul>
             <li> Interpolate normals rather than colors (Shading needs to be done for every fragment (pixel)</li>
@@ -51,7 +51,7 @@
             <li> Not supported in OpenGL (You should write your own Phong shader using GLSL)</li>
         </ul>
         <div class="clearfix"><img align=middle src="phong1.png"></div>
-
+        <br>
         <p>简单用中文概括三种着色方式的特点：</p>
         <ul>
             <li> Flating Shading: 用多边形平面的法向量计算出光照下当前多边形平面的颜色，然后用单一色对整个面进行着色。</li>
@@ -59,16 +59,19 @@
             <li> Phong Shading: 结合了多边形物体表面反射光的亮度，并以特定片段 (像素) 的表面法线作为像素参考值来对平面着色，Phong Shading也被称为Per-Pixel像素着色。</li>
         </ul>
         <br>
-        <div class="clearfix"><img align=middle src="example2.png"></div>
+        <div class="clearfix"><img align=middle src="example2.png", width="500",height ="420"></div>
+        <br>
         <p>
             现在我们来分析各自的时间复杂度：
         </p>
         <p>
             假设构成曲面几何体的多边形为三角形, 三角形面积为A, 三角形个数为N, 着色一次的计算量L(着色一次需要6次乘法和2次加法和1次查表运算), 双线性插值的时间复杂度设为B。
         </p>
+        <br>
         <p> O(Flating Shading): N * L</p>
         <p> O(Gouraud Shading): N * (3 * L + B * A)</p>
         <p> O(Phong Shading): ：(B + L) * N * A</p>
+        <br>
         <p>
             我们可以看出对于时间复杂度：Flat < Gouraud < Phong Shading。这也说明了为何早起电脑都只支持Gouraud shading，但随着GPU的迅速发展，Phong Shading的效能已得到提升。
         </p>
