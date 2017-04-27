@@ -27,6 +27,7 @@
         <p>通过glEnable(GL_LIGHT0)  glDisable(GL_LIGHT0) 来开启和关闭指定的光源。</p>
         <p>---  全局环境光 ---</p>
         <div class = "clearfix"><img align=left src="step2.PNG"></div>
+        <br>
         
         <p style="color:red;">(3)设置光源的光分量  -- 环境光/漫色光/镜面光</p>
         <p> 默认情况下：</p>
@@ -51,9 +52,9 @@
         <p> -- 聚光灯 --          有位置有方向 (w != 0)</p>
         <div class = "clearfix"><img align=left src="spotlight.png"></div>
         <div class = "clearfix"><img align=left src="step4-3.PNG"></div>
+        <br>
         <p style="color:red;">** 平行光不会随着距离d增加而衰减，但点光源和聚光灯会发生衰减 **</p>
         <div class = "clearfix"><img align=left src="atten_eq.png"></div>
-        <br>
         <p>attenuation为衰变系数，系数值越大，衰变越快。</p>
         <p> 默认情况下，c=1.0, l=0.0, q=0.0</p>
         <div class = "clearfix"><img align=left src="atten_pic.png"></div>
@@ -62,9 +63,7 @@
         <br>
 
         <p style="color:red;">(5)设置材质属性</p>
-        <p>环境光、散射光不受视点位置的影响。物体看起来是什么颜色，很大程度上地受到散射光的影响，环境光反射也对物体的颜色有一定的影响。
-      因为当光直射物体时，散射光最强；非直射时，环境光效果明显。对于真实的世界中的物体，其散射光与环境光通常是同一个颜色。
-      物体的镜面反射会在物体表面产生一个高亮区。观察者所看到的镜面反射依赖于视点位置 -- 沿着反射光的方向亮度最高。</p>
+        <p>环境光、散射光不受视点位置的影响。物体看起来是什么颜色，很大程度上地受到散射光的影响，环境光反射也对物体的颜色有一定的影响。 因为当光直射物体时，散射光最强；非直射时，环境光效果明显。对于真实的世界中的物体，其散射光与环境光通常是同一个颜色。物体的镜面反射会在物体表面产生一个高亮区。观察者所看到的镜面反射依赖于视点位置 -- 沿着反射光的方向亮度最高。</p>
         <br>
         <p>默认情况下:</p>
         <ul>
@@ -74,6 +73,7 @@
             <li>材质的GL_SHININESS值为0.0【取值范围为[0.0, 128.0]，数值越大，高亮区越小，亮度越高】</li>
             <li>材质的GL_GL_EMISSION值为(0.0, 0.0, 0.0, 1.0)</li>
         </ul>
+        <br>
         <div class = "clearfix"><img align=left src="step5.PNG"></div>
         <br>
 
