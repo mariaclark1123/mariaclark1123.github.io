@@ -14,6 +14,7 @@
     <p> 
 GLEW是一个跨平台的C++扩展库，基于OpenGL图形接口。使用OpenGL的朋友都知道，window目前只支持OpenGL1.1的涵数，但 OpenGL现在都发展到2.0以上了，要使用这些OpenGL的高级特性，就必须下载最新的扩展，另外，不同的显卡公司，也会发布一些只有自家显卡才支 持的扩展函数，你要想用这数涵数，不得不去寻找最新的glext.h,有了GLEW扩展库，你就再也不用为找不到函数的接口而烦恼，因为GLEW能自动识 别你的平台所支持的全部OpenGL高级扩展涵数。也就是说，只要包含一个glew.h头文件，你就能使用gl,glu,glext,wgl,glx的全 部函数。GLEW支持目前流行的各种操作系统（including Windows, Linux, Mac OS X, FreeBSD, Irix, and Solaris）。    
     </p>
+    <br>
     <ul>
     <li><a href = "http://glew.sourceforge.net/" target="_blank">项目主页：glew.sourceforge.net/</a></li>
     <li><a href = "http://glew.sourceforge.net/install.html"target="_blank">文档地址：glew.sourceforge.net/install.html</a></li>
@@ -25,7 +26,9 @@ glaux是OpenGL辅助库，包含有31个函数，函数名前缀为aux。这部�
     </p>
     <br>
     <hr>
+    <br>
     <h3> 常见的OpenGL头文件如下：</h3>  
+    <br>
     <ul>
     <li> [GL/gl.h]：OpenGL所使用的函数和常量声明。</li>  
     <li> [GL/glu.h]：GLU（OpenGL实用库）所使用的函数和常量声明。GLU库属于OpenGL标准的一部分。（以下各种库则不属于） </li>
@@ -33,6 +36,7 @@ glaux是OpenGL辅助库，包含有31个函数，函数名前缀为aux。这部�
     <li> [GL/glut.h]：GLUT（OpenGL实用工具包）所使用的函数和常量声明。这个库的功能大致与GLAUX类似，目前许多OpenGL教程使用这个库来编写演示程序。一些编译系统可能不直接提供这个库（例如VC系列），需要单独下载安装。这个头文件自动包含了[GL/gl.h和[GL/glu.h]，编程时不必再次包含它们。 </li>
     <li> [GL/glext.h]：扩展头文件。因为微软公司对OpenGL的支持不太积极，VC系列编译器虽然有[GL/gl.h]这个头文件，但是里面只有OpenGL 1.1版本中所规定的内容，而没有OpenGL 1.2及其以后版本。对当前的计算机配置而言，几乎都支持OpenGL 1.4版本，更高的则到1.5, 2.0, 2.1，而VC无法直接使用这些功能。为了解决这一问题，就有了[GL/glext.h]头文件。这个头文件提供了高版本OpenGL所需要的各种常数声明以及函数指针声明。 </li>
     <li> [GL/wglext.h]：扩展头文件。与[GL/glext.h]类似，但这个头文件中只提供适用于Windows系统的各种OpenGL扩展所使用的函数和常量，不适用于其它操作系统。</li>
+    <br>
     <li> "glee.h"：GLEE开源库的头文件。它的出现是因为[GL/glext.h]虽然可以使用高版本的OpenGL函数，但是使用的形式不太方便。GLEE库则让高版本的OpenGL函数与其它OpenGL函数在使用上同样方便。需要注意的是，这个头文件与[GL/gl.h]是冲突的，在包含"glee.h"之前，不应该包含[GL/gl.h]。</li>
     </ul>    
     <p> #include [GL/glut.h] </p>
