@@ -13,6 +13,15 @@
         <h1>OpenGL - Lighting, material and color</h1>
         <hr>
         <br>
+        <p>现实世界的光照是极其复杂的，而且会受到诸多因素的影响，这是以目前我们所拥有的处理能力无法模拟的。因此OpenGL的光照仅仅使用了简化的模型并基于对现实的估计来进行模拟，这样处理起来会更容易一些，而且看起来也差不多一样。这些光照模型都是基于我们对光的物理特性的理解。其中一个模型被称为冯氏光照模型(Phong Lighting Model)。冯氏光照模型的主要结构由3个元素组成：环境(Ambient)、漫反射(Diffuse)和镜面(Specular)光照。这些光照元素看起来像下面这样：</p>
+        <div class="clearfix"><img align=middle src="basic_lighting_phong.png"></div>
+        <ul>
+            <li> 环境光照(Ambient Lighting)：即使在黑暗的情况下，世界上也仍然有一些光亮(月亮、一个来自远处的光)，所以物体永远不会是完全黑暗的。我们使用环境光照来模拟这种情况，也就是无论如何永远都给物体一些颜色。</li>
+            <li> 漫反射光照(Diffuse Lighting)：模拟一个发光物对物体的方向性影响(Directional Impact)。它是冯氏光照模型最显著的组成部分。面向光源的一面比其他面会更亮。</li>
+            <li> 镜面光照(Specular Lighting)：模拟有光泽物体上面出现的亮点。镜面光照的颜色，相比于物体的颜色更倾向于光的颜色。</li>
+        </ul>
+        
+        
         <p>
             OpenGL场景中模型颜色的产生，大致为如下的流程图所描述：
         </p>
@@ -91,7 +100,6 @@
         </ul>
         <hr>
         <p><a href="http://www.cnblogs.com/kekec/archive/2011/08/16/2140789.html">本文转自可可西的博客：http://www.cnblogs.com/kekec/archive/2011/08/16/2140789.html</a></p>
-
 </div>
 </body>
 </html>
