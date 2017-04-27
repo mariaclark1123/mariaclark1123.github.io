@@ -25,8 +25,8 @@ html, body {width:100%;height:100%;}
         <br>
         <p>PBO,即Pixel Buffer Object也是用于GPU的扩展（ARB_vertex_buffer_object）。这里的缓存当然就是GPU的缓存。PBO与VBO扩展类似，只不过它存储的是像素数据而不是顶点数据。PBO借用了VBO框架和所有API函数形式，并加了上两个"target"标志。这两个标识是：</p>
 <ul>
-<li>GL_PIXEL_PACK_BUFFER_ARB 将像素数据传给PBO</li>
-<li>GL_PIXEL_UNPACK_BUFFER_ARB 从PBO得到像素数据</li>
+<li> GL_PIXEL_PACK_BUFFER_ARB 将像素数据传给PBO</li>
+<li> GL_PIXEL_UNPACK_BUFFER_ARB 从PBO得到像素数据</li>
 </ul>
 <br>
 <p>这里的“pack”还是“unpack”，可分别理解为“传给”和“得到”。它们也都可以统一理解为“拷贝”，也就是像素数据的“传递”。比如说，glReadPixel就是数据从帧缓存（framebuffer）到内存（memory），可理解为“pack”；glDrawPixel是从内存到帧缓存，可理解为“unpack”；glGetTexImage是从纹理对象到内存，可理解为“pack”；glTexImage2d从内存（memory）到纹理对象（texture object），可理解为“unpack”。</p>
@@ -65,14 +65,13 @@ html, body {width:100%;height:100%;}
         <br>
         <h3>参考文章</h3>
         <ul>
-            <li><a href="http://www.songho.ca/opengl/gl_pbo.html">OpenGL Pixel Buffer Object (PBO)</a></li>
-            <li><a href="http://hacksoflife.blogspot.kr/2006/10/vbos-pbos-and-fbos.html">VBOs, PBOs and FBOs</a></li>
+            <li><a href="http://www.songho.ca/opengl/gl_pbo.html"> OpenGL Pixel Buffer Object (PBO)</a></li>
+            <li><a href="http://hacksoflife.blogspot.kr/2006/10/vbos-pbos-and-fbos.html"> VBOs, PBOs and FBOs</a></li>
         </ul>
 
         <hr>
         <br>
         <p><a href="http://blog.sina.com.cn/s/blog_4062094e0100alvt.html">本文转自保持快乐保持健康博客博客：http://blog.sina.com.cn/s/blog_4062094e0100alvt.html</a></p>
-    </ul>
     </div>
 </body>
 <script src="js/js.js"></script>
