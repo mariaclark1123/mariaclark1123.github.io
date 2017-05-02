@@ -34,7 +34,26 @@
             <li> Assessment: Inexpensive to compute; Less pleasant for smooth surfaces; Not pleasant even for flat surfaces</li>
         </ul>
         <p> Flat Shading's Code Example</p>
-        <div class="clearfix"><img align=middle src="flat_code.PNG"></div>
+        <pre>
+        <code class="javascript highlight">
+ //Flat Shading Code Example
+ void init()
+ {
+	 GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 0.0 };
+	 GLfloat mat_shininess[] = { 50.0 };
+	 GLfloat light_position[] = { 1.0, 1.0, 1.0, 0.0 };
+	 glClearColor(0.0, 0.0, 0.0, 0.0);
+	 glShadeModel(GL_SMOOTH);
+	 glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	 glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	 glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+	 glEnable(GL_LIGHTING);
+	 glEnable(GL_LIGHT0);
+	 glEnable(GL_DEPTH_TEST);
+	 glShadeModel(GL_FLAT);
+ }
+             </code>
+        </pre>
         <br>
         <p> 2. Gouraud Shading:</p>
         <ul>
@@ -85,4 +104,17 @@
         <hr>
     </div>
 </body>
+<script src="js/js.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+<link rel="stylesheet" href="css/solarized-light.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
 </html>

@@ -37,8 +37,8 @@
         <p>---  全局环境光 ---</p>
         <pre>
             <code class="javascript highlight">
-                   GLfloat glAmbient[] = {0.6, 0,6, 0,6, 1.0};
-                   glLightModelfv(GL_LIGHT_MODEL_AMBIENT, gAmbient);
+ GLfloat glAmbient[] = {0.6, 0,6, 0,6, 1.0};
+ glLightModelfv(GL_LIGHT_MODEL_AMBIENT, gAmbient);
              </code>
         </pre>
         <br>
@@ -53,12 +53,12 @@
         <p> 所以我们需要自己定义光源的光分量：</p>
         <pre>
             <code class="javascript highlight">
-                  GLfloat lightAmbient[] = {1.0, 1.0, 1.0, 1.0};
-                  GLfloat lightDiffuse[]   = {1.0, 1.0, 1.0, 1.0};
-                  GLfloat lightSpecular[] = {0.5, 0.5, 0.5, 1.0};
-                  glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
-                  glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
-                  glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
+ GLfloat lightAmbient[] = {1.0, 1.0, 1.0, 1.0};
+ GLfloat lightDiffuse[]   = {1.0, 1.0, 1.0, 1.0};
+ GLfloat lightSpecular[] = {0.5, 0.5, 0.5, 1.0};
+ glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmbient);
+ glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiffuse);
+ glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpecular);
              </code>
         </pre>
         <br>
@@ -67,8 +67,8 @@
         <p> -- 平行光 --         没有位置只有方向 (w = 0)</p>
         <pre>
              <code class="javascript highlight">
-                  GLfloat lightPosition[] = {8.5, 5.0, -2.0, 0.0};   // w=0.0
-                  glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+ GLfloat lightPosition[] = {8.5, 5.0, -2.0, 0.0};   // w=0.0
+ glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
              </code>
         </pre>
         <br>
@@ -76,8 +76,8 @@
         <p> -- 点光源 --          有位置没有方向 (w != 0)</p>
         <pre>
              <code class="javascript highlight">
-                  GLfloat lightPosition[] = {8.5, 5.0, -2.0, 1.0};   // w不为0
-                  glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+ GLfloat lightPosition[] = {8.5, 5.0, -2.0, 1.0};   // w不为0
+ glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
              </code>
         </pre>
         <br>
@@ -86,11 +86,11 @@
         <div class = "clearfix"><img align=left src="spotlight.png"></div>
         <pre>
         <code class="javascript highlight">
-                   GLfloat lightPosition[] = {-6.0, 1.0, 3.0, 1.0};   // w不为0
-                   glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-                   GLfloat lightDirection[] = {1.0, 1.0, 0.0};
-                   glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, lightDirection);  // 聚光灯主轴方向  spot direction
-                   glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);   // cutoff角度  spot cutoff
+ GLfloat lightPosition[] = {-6.0, 1.0, 3.0, 1.0};   // w不为0
+ glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+ GLfloat lightDirection[] = {1.0, 1.0, 0.0};
+ glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, lightDirection);  // 聚光灯主轴方向  spot direction
+ glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 45.0);   // cutoff角度  spot cutoff
              </code>
         </pre>
         <br>
@@ -102,9 +102,9 @@
         <p>可以自定义衰变函数的系数</p>
         <pre>
         <code class="javascript highlight">
-                 glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);     // c 系数
-                 glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);        // l 系数
-                 glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);    // q 系数
+ glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 2.0);     // c 系数
+ glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 1.0);        // l 系数
+ glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.5);    // q 系数
              </code>
         </pre>
         <br>
@@ -123,18 +123,18 @@
         <br>
         <pre>
              <code class="javascript highlight">
-                     GLfloat matAmbient[] = {0.6, 0.6, 0.6, 1.0};
-                     GLfloat matDiffuse[]   = {0.35, 0.35, 0.35, 1.0};
-                     GLfloat matAmbDif[]   = {0.5, 0.5, 0.5, 1.0};
-                     GLfloat matSpecular[] = {0.2, 0.2, 0.2, 1.0};
-                     GLfloat shine[] = {5.0};
-                     GLfloat matEmission[] = {0.3, 0.1, 0.1, 1.0};
-                     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
-                     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
-                     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbDif);  // 将背景颜色和散射颜色设置成同一颜色
-                     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
-                     glMaterialfv(GL_FRONT, GL_SHININESS, shine);
-                     glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);  // 用来模拟物体发光的效果，但这不是光源
+ GLfloat matAmbient[] = {0.6, 0.6, 0.6, 1.0};
+ GLfloat matDiffuse[]   = {0.35, 0.35, 0.35, 1.0};
+ GLfloat matAmbDif[]   = {0.5, 0.5, 0.5, 1.0};
+ GLfloat matSpecular[] = {0.2, 0.2, 0.2, 1.0};
+ GLfloat shine[] = {5.0};
+ GLfloat matEmission[] = {0.3, 0.1, 0.1, 1.0};
+ glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, matAmbient);
+ glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, matDiffuse);
+ glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbDif);  // 将背景颜色和散射颜色设置成同一颜色
+ glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, matSpecular);
+ glMaterialfv(GL_FRONT, GL_SHININESS, shine);
+ glMaterialfv(GL_FRONT, GL_EMISSION, matEmission);  // 用来模拟物体发光的效果，但这不是光源
              </code>
         </pre>
         <br>
@@ -145,14 +145,14 @@
         </p>
         <pre>
               <code class="javascript highlight">
-                     glEnable(GL_COLOR_MATERIAL);
-                     glColorMaterial(GL_FRONT, GL_DIFFUSE);
-                     glColor3f(0.2, 0.5, 0.8);
-                     /*** 绘制一些物体 ***/
-                     glColorMaterial(GL_FRONT, GL_SPECULAR);
-                     glColor3f(0.9, 0.1, 0.3);
-                     /*** 绘制另外一些物体 ***/
-                     glDisable(GL_COLOR_MATERIAL);
+ glEnable(GL_COLOR_MATERIAL);
+ glColorMaterial(GL_FRONT, GL_DIFFUSE);
+ glColor3f(0.2, 0.5, 0.8);
+ /*** 绘制一些物体 ***/
+ glColorMaterial(GL_FRONT, GL_SPECULAR);
+ glColor3f(0.9, 0.1, 0.3);
+ /*** 绘制另外一些物体 ***/
+ glDisable(GL_COLOR_MATERIAL);
              </code>
         </pre>
         <br>

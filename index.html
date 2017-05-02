@@ -117,11 +117,11 @@
         </ul>
         <pre>
              <code class="javascript highlight">
-                 #ifdef _DEBUG
-                 #pragma comment(lib,"..\\debug\\LedCtrlBoard.lib")
-                 #else
-                 #pragma comment(lib,"..\\release\\LedCtrlBoard.lib")
-                 #endif
+ #ifdef _DEBUG
+ #pragma comment(lib,"..\\debug\\LedCtrlBoard.lib")
+ #else
+ #pragma comment(lib,"..\\release\\LedCtrlBoard.lib")
+ #endif
              </code>
         </pre>
         <p><font color="red"> Comment: 这种方法直观,方便,且可以按如上直接区分出Debug版本和Release版本的不同目录.当然,通过宏,还可以区分更多版本.但是在指定目录时,不小心容易出错.</font></p>
