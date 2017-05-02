@@ -95,6 +95,7 @@
     <hr>
     <h3>20170502</h3>
     <hr>
+    <br>
     <p><b>在Visual Studio中添加lib的三种方法</b></p>
     <br>
     <p><font color="red"> * 每种方法也要复制相应的DLL文件到相应目录，或者设定DLL目录的位置，具体方法为："Project" -> "Properties" -> "Configuration Properties" -> "Debugging"，在"Working Directory"设置dll的路径就可以了</font></p>
@@ -103,7 +104,7 @@
    
     <br>
     <ul>
-        <li> 方法1: 通过设置工程配置来添加lib库.</li>
+        <li><b> 方法1: 通过设置工程配置来添加lib库.</b></li>
     </ul>
     <p> A 添加工程的头文件目录："Project" -> "Properties" -> "C/C++" -> "General" -> "Additional Include Directories"：加上头文件存放目录 (例如当前项目目录中的lib目录：$(ProjectDir)\lib)。</p>
     <p> B 添加文件引用的lib静态库路径："Project" -> "Properties" -> "Linker" -> "General" -> "Additional Library Directories"：加上lib文件存放目录。</p>
@@ -112,7 +113,7 @@
    
     <br>
     <ul>
-        <li> 方法2: 使用编译语句.</li>
+        <li><b> 方法2: 使用编译语句.</b></li>
     </ul>
     <p> #ifdef _DEBUG</p>
     <p> #pragma comment(lib,"..\\debug\\LedCtrlBoard.lib")</p>
@@ -123,7 +124,7 @@
 
     <br>
     <ul>
-        <li> 方法3: 直接添加库文件到工程中. </li>
+        <li><b> 方法3: 直接添加库文件到工程中. </b></li>
     </ul>
     <p> 在VS的Solution Explorer (解决方案视图)中, 选中工程 -> 右键 -> "Add" -> "Exisiting items" -> 选择lib文件 -> 确定.</p>
     <p><font color="red"> Comment: 这个方法适用于在我的工程的debug版本和Release版本中都使用同一个lib库文件时.这样就省去了你1方法配置环境的繁琐,也省去了方法2种语句的可能性错误发生.</font></p>
