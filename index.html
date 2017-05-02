@@ -90,6 +90,40 @@
     <ul>
         <li><a href="http://yuedu.163.com/source/46fecdef757946bd8989a6b30d01b465_4"> 人性论</a></li>
     </ul>
+
+    br>
+    <hr>
+    <h3>20170427</h3>
+    <hr>
+    <p> 在Visual Studio中添加lib的三种方法</p>
+    <p><font color="red"> * 每种方法也要复制相应的DLL文件到相应目录，或者设定DLL目录的位置，具体方法为："Project" -> "Properties" -> "Configuration Properties" -> "Debugging"，在"Working Directory"设置dll的路径就可以了</font></p>
+    <p><font color="red"> * 无论是设置DLL目录，或者是Lib目录，亦或是头文件的目录，都有release版本和debug版本的区分，每种版本的设置都是独立的，要分别设置。</font></p>
+    <p><font color="red"> * "Properties"可以在VS资源管理器右键项目名中选中，或者通过VS目录中的Project -> Properties打开</font></p>
+   
+    <br>
+    <ul>
+        <li>方法1:  通过设置工程配置来添加lib库. (comment:这种方法比较繁琐,且不直观,还要对debug版本和release版本作不同的配置,因为我们生成的两个版本的库可能放在不同的目录中的.)</li>
+    </ul>
+    <p> A 添加工程的头文件目录："Project" -> "Properties" -> "C/C++" -> "General" -> "Additional Include Directories"：加上头文件存放目录 (例如当前项目目录中的lib目录：$(ProjectDir)\lib)。</p>
+    <p> B 添加文件引用的lib静态库路径："Project" -> "Properties" -> "Linker" -> "General" -> "Additional Library Directories"：加上lib文件存放目录。</p>
+    <p> C 然后添加工程引用的lib文件名："Project" -> "Properties" -> "Linker" -> "Input" -> "Additional Dependencies"：加上lib文件名。</p>
+
+    <br>
+    <ul>
+        <li>方法2: 使用编译语句. (comment:这种方法直观,方便,且可以按如上直接区分出Debug版本和Release版本的不同目录.当然,通过宏,还可以区分更多版本.但是在指定目录时,不小心容易出错.)</li>
+    </ul>
+    <p> #ifdef _DEBUG</p>
+    <p> #pragma comment(lib,"..\\debug\\LedCtrlBoard.lib")</p>
+    <p> #else</p>
+    <p> #pragma comment(lib,"..\\release\\LedCtrlBoard.lib")</p>
+    <p> #endif</p>
+
+    <br>
+    <ul>
+        <li>方法3: 直接添加库文件到工程中. (这个方法适用于在我的工程的debug版本和Release版本中都使用同一个lib库文件时.这样就省去了你1方法配置环境的繁琐,也省去了方法2种语句的可能性错误发生.)</li>
+    </ul>
+    <p> 就像你添加.h和.cpp文件一样,把lib文件添加到工程文件列表中去.</p>
+    <p> VS中,在Solution Explorer (解决方案视图),选中工程 -> 右键 -> "Add" -> "Exisiting items" -> 选择lib文件 -> 确定.</p>
 </div>
 </body>
 </html>
