@@ -14,10 +14,14 @@
         <h1>静态IP和动态IP</h1>
         <hr>
         <br>
-
+        <p>
+            态IP，即IP位址会随着电脑的开关机，或ISP重新分配的IP地址而变动。
+        </p>
         <br>
         <p>
-            在网络上，每台电脑之间都是通过IP地址来通讯，也就是说，不管动态IP：網際網路上，每台電腦之間，是透過IP位址來通訊。也就是說，不管是要連上網路，或是傳送信件，都必須知道對方的IP位址才能與該台電腦溝通。而IP位址都是數字(EX：123.123.123.123)。固定IP即ISP業者給予用戶固定的IP位址，不會變動，適合架設網站。一般使用戶較適合浮動IP，意即IP位址會隨電腦開、關機，或ISP業者重新發派IP位址而異動。為什麼需要用浮動IP？ 第一、IP不夠用，第二、你隨便設，和別人衝突機會高，第三、使用NB不就每換地方就得改設定。所以伺服主機和網路設備多使用固定IP。
+            在网络上，每台电脑之间都是通过IP地址来通讯，也就是说，不管是连接网络，还是传送邮件，都必须知道对方的IP地址才能和对方的机器连通。而IP地址都是数字(EX：123.123.123.123)。固定IP即是ISP(Internet Service Provider, 互联网服务提供商)给用户的固定IP地址，不会变动，适合用作网站建设。一般使用户适合使用动态IP，即IP位址会随着电脑的开关机，或ISP重新分配的IP地址而变动。</p>
+        <p>
+            动态IP的出现有几个原因，第一、IP不夠用，第二、自己随便设置的话容易和別人设置的IP地址产生冲突，第三、使用NB不就每換地方就得改設定。所以伺服主機和網路設備多使用固定IP。
         </p>
 
         <br>
@@ -76,40 +80,6 @@
                     //上传纹理缓冲
                 </li>
             </ul>
-
-
-            <br>
-            <p>
-                使用阶段：
-            </p>
-            <ul>
-                <li> 1. glEnable(GL_TEXTURE_2D); //开始使用纹理缓冲</p>
-                <li> 2. glBindTexture(GL_TEXTURE_2D, texID); //选择当前使用的纹理缓冲 </li>
-                <li> 3. 发送顶点和纹理坐标，画吧...省略</li>
-                <li> 4. glDisable(GL_TEXTURE_2D); //停止使用纹理 </li>
-            </ul>
-
-
-            <br>
-            <p>
-                收尾阶段：
-            </p>
-            <li> 1. glDeleteTextures(1,&texID);//删除句柄,，同时删除server端缓冲</li>
-            <br>
-
-            <hr>
-            <h3>参考文章</h3>
-            <ul>
-                <li><a href="http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=45">一个使用VBO扩展的例子程序:NEHE教程第45讲 </a></li>
-                <li><a href="http://www.cppblog.com/w2001/archive/2008/05/10/49376.aspx">VBO扩展的用法流程，总结出与纹理用法流程的相似性 </a></li>
-                <li><a href="http://www.songho.ca/opengl/gl_vbo.html ">Opengl Vertex Buffer Object</a></li>
-            </ul>
-
-            <hr>
-            <p><a href="http://blog.sina.com.cn/s/blog_4062094e0100aluv.html">本文转自保持快乐保持健康博客博客：http://blog.sina.com.cn/s/blog_4062094e0100aluv.html</a></p>
-
 </div>
-
-
 </body>
 </html>
