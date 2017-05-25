@@ -15,6 +15,7 @@
             Link Time Code Generation(以下称LTCG)这个功能对于广大的程序员，特别是为了提高程序的性能而苦苦烦恼的程序员来说，简直可以说是拨开云雾见太阳。
             废话少说，让我们直奔主题。
         </p>
+        <br>
         <p>现在有下面的示例代码:</p>
 
         <pre>
@@ -22,18 +23,21 @@
 interface.h
  int func1(int);
  int func2(int);
+
 func1.cpp
  #include "interface.h"
  int func1(int v)
  {
      return v * 2;
  }
+
 func2.cpp
  #include "interface.h"
  int func2(int v)
  {
      return func1(v) * 2;
  }
+
 main.cpp
  #include <tchar.h>
  #include <stdio.h>
@@ -66,11 +70,13 @@ add        esp,0Ch
 add        eax,esi
 pop        esi
 ret
-其中 ?func1@@YAHH@Z对应代码如下
+
+// 其中 ?func1@@YAHH@Z对应代码如下
 mov       eax,dword ptr [esp+4]
 add        eax,eax
 ret
-而 ?func2@@YAHH@Z代码如下
+
+// 而 ?func2@@YAHH@Z代码如下
 mov       eax,dword ptr [esp+4]
 push       eax
 call         @ILT+0(?func1@@YAHH@Z)
@@ -86,7 +92,7 @@ ret
             <li> 优化了寄存器分配，直接对eax（函数返回值寄存器）进行操作，减少了mov指令。</li>
         </ul>
         <br>
-        <p>接下来，让我们看看另一种情况</p>
+        <p>接下来，让我们看看另一种情况:</p>
         <pre>
         <code class="javascript highlight">
 // 2、LTCG打开
@@ -110,7 +116,7 @@ mov       eax,32h
             相比第一种情况大约花费了20多条指令才能得到的结果，这里就只剩下一个简简单单的32h，简单的让人感到害怕和无地自容。
         </p>
         <br>
-        <p>Ans: 原因在于传统的编译模式（词法解析-〉代码生成-〉链接），决定了在生成代码时，编译器只能看到同一个obj文件的内容，因此，优化也只能在obj文件里进行，因此，在第一种情况下，每个函数都已经被优化到极致。而LTCG的引入,则颠覆了这种模式，将链接器提前到代码生成之前，并由之来调用代码生成，这样，在生成代码的时候，编译器便不太容易受到obj文件边界的限制，因此在第二种情况下，编译器可以发现，虽然经过了多次的函数调用和算术操作，但是由于所有的输入都是常量，因此最终结果也一定是一个常量，因此，完全事先将结果算好来加快速度。也就是说，有些函数，虽然没有被标上inline，却被编译器自动inline了。</p>
+        <p><b>ANSWER:</b>原因在于传统的编译模式（词法解析-〉代码生成-〉链接），决定了在生成代码时，编译器只能看到同一个obj文件的内容，因此，优化也只能在obj文件里进行，因此，在第一种情况下，每个函数都已经被优化到极致。而LTCG的引入,则颠覆了这种模式，将链接器提前到代码生成之前，并由之来调用代码生成，这样，在生成代码的时候，编译器便不太容易受到obj文件边界的限制，因此在第二种情况下，编译器可以发现，虽然经过了多次的函数调用和算术操作，但是由于所有的输入都是常量，因此最终结果也一定是一个常量，因此，完全事先将结果算好来加快速度。也就是说，有些函数，虽然没有被标上inline，却被编译器自动inline了。</p>
        
         <hr>
         <br>
