@@ -18,10 +18,10 @@
         <br>
         <p>1.void gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar)</p>
         <ul>
-            <li>fovy: 视角的大小(相机的焦距), 如果设置为0, 相当闭上眼睛, 什么也看不到, 如果为180, 相当于进入物体内部。一般设置为60即可。</li>
-            <li>aspect: 实际窗口的纵横比, 即x/y, 一般都是要按照窗口比例来, 否则看到的图形和实际图形就会不一样了。</li>
-            <li>zNear: 表示近处的裁面。</li>
-            <li>zFar，表示远处的裁面。</li>
+            <li> fovy: 视角的大小(相机的焦距), 如果设置为0, 相当闭上眼睛, 什么也看不到, 如果为180, 相当于进入物体内部。一般设置为60即可。</li>
+            <li> aspect: 实际窗口的纵横比, 即x/y, 一般都是要按照窗口比例来, 否则看到的图形和实际图形就会不一样了。</li>
+            <li> zNear: 表示近处的裁面。</li>
+            <li> zFar，表示远处的裁面。</li>
         </ul>
         <p>gluPerspective这个函数指定了观察的视景体在世界坐标系中的具体大小，一般而言，其中的参数aspect应该与窗口的宽高比大小相同。比如说，aspect=2.0表示在观察者的角度中物体的宽度是高度的两倍，在视口中宽度也是高度的两倍，这样显示出的物体才不会被扭曲。</p>
         <p><img align=left src="image1.gif"></p>
@@ -31,16 +31,16 @@
         <p>2.void gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz)</p>
         <p>该函数定义一个视图矩阵，并与当前矩阵相乘。</p>
         <ul>
-            <li>第一组eyex, eyey,eyez 相机在世界坐标的位置</li>
-            <li>第二组centerx,centery,centerz 相机镜头对准的物体在世界坐标的位置</li>
-            <li>第三组upx,upy,upz 相机向上的方向在世界坐标中的方向</li>
+            <li> 第一组eyex, eyey,eyez 相机在世界坐标的位置</li>
+            <li> 第二组centerx,centery,centerz 相机镜头对准的物体在世界坐标的位置</li>
+            <li> 第三组upx,upy,upz 相机向上的方向在世界坐标中的方向</li>
         </ul>
         <br>
         <p>为了更好理解, 也可以把相机想成你的脑袋</p>
         <ul>
-            <li>第一组数据就是脑袋的位置</li>
-            <li>第二组数据就是眼睛看的物体的位置</li>
-            <li>第三组就是头顶朝向的方向（因为你可以歪着头看同一个物体）</li>
+            <li> 第一组数据就是脑袋的位置</li>
+            <li> 第二组数据就是眼睛看的物体的位置</li>
+            <li> 第三组就是头顶朝向的方向（因为你可以歪着头看同一个物体）</li>
         </ul>
         <br>
         <p>在这里，我们就涉及到一个十分重要的概念，坐标系。在3D绘图中，坐标系是右手系，如果x轴指向我们的右侧，那么y则指向上侧，z轴指向屏幕外。如下图所示。</p>
