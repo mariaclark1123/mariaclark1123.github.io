@@ -16,7 +16,7 @@
         </p>
 
         <br>
-        <p>1.void gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar)</p>
+        <h3>1. void gluPerspective(GLdouble fovy,GLdouble aspect,GLdouble zNear,GLdouble zFar)</h3>
         <ul>
             <li> fovy: 视角的大小(相机的焦距), 如果设置为0, 相当闭上眼睛, 什么也看不到, 如果为180, 相当于进入物体内部。一般设置为60即可。</li>
             <li> aspect: 实际窗口的纵横比, 即x/y, 一般都是要按照窗口比例来, 否则看到的图形和实际图形就会不一样了。</li>
@@ -28,7 +28,8 @@
         <p><img align=left src="image1-1.jpg"></p>
 
         <br>
-        <p>2.void gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz)</p>
+        <h3>2. void gluLookAt(GLdouble eyex,GLdouble eyey,GLdouble eyez,GLdouble centerx,GLdouble centery,GLdouble centerz,GLdouble upx,GLdouble upy,GLdouble upz)</h3>
+        <br>
         <p>该函数定义一个视图矩阵，并与当前矩阵相乘。</p>
         <ul>
             <li> 第一组eyex, eyey,eyez 相机在世界坐标的位置</li>
@@ -50,55 +51,55 @@
 
         <pre>
         <code class="javascript highlight">
-#include <GL/glut.h>
-void display(void) {
-	//清除缓冲区颜色
-	glClear(GL_COLOR_BUFFER_BIT);
-	//指定即将画的物体为白色
-	glColor3f(1.0, 1.0, 1.0);
-	//原点在坐标中心
-	glLoadIdentity();
-	//从(0,0,0.5)的位置朝(0,0,0)位置看, 相机为头朝上方向 
-	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-    //画线状茶壶
-	glutWireTeapot(2);
-	//清除缓冲区刷新
-	glutSwapBuffers();
-}
-
-void reshape(int w, int h) {
-	//定义视口大小
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	//投影显示
-	glMatrixMode(GL_PROJECTION);
-	//坐标原点在屏幕中心
-	glLoadIdentity();
-	//操作模型视景
-	gluPerspective(60.0, (GLfloat)w / (GLfloat)h, 1.0, 20.0);
-	glMatrixMode(GL_MODELVIEW);
-}
-
-int main(int argc, char** argv) {
-	//初始化
-	glutInit(&argc, argv);
-	//设置显示模式
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	//初始化窗口大小
-	glutInitWindowSize(600, 500);
-	//定义左上角窗口位置
-	glutInitWindowPosition(100, 100);
-	//创建窗口
-	glutCreateWindow(argv[0]);
-	//清除颜色缓冲区
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	//显示函数
-	glutDisplayFunc(display);
-	//窗口大小改变时的响应
-	glutReshapeFunc(reshape);
-	//循环
-	glutMainLoop();
-	return 0;
-}
+    #include <GL/glut.h>
+    void display(void) {
+    	//清除缓冲区颜色
+    	glClear(GL_COLOR_BUFFER_BIT);
+    	//指定即将画的物体为白色
+    	glColor3f(1.0, 1.0, 1.0);
+    	//原点在坐标中心
+    	glLoadIdentity();
+    	//从(0,0,0.5)的位置朝(0,0,0)位置看, 相机为头朝上方向 
+    	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+        //画线状茶壶
+    	glutWireTeapot(2);
+    	//清除缓冲区刷新
+    	glutSwapBuffers();
+    }
+    
+    void reshape(int w, int h) {
+    	//定义视口大小
+    	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    	//投影显示
+    	glMatrixMode(GL_PROJECTION);
+    	//坐标原点在屏幕中心
+    	glLoadIdentity();
+    	//操作模型视景
+    	gluPerspective(60.0, (GLfloat)w / (GLfloat)h, 1.0, 20.0);
+    	glMatrixMode(GL_MODELVIEW);
+    }
+    
+    int main(int argc, char** argv) {
+    	//初始化
+    	glutInit(&argc, argv);
+    	//设置显示模式
+    	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    	//初始化窗口大小
+    	glutInitWindowSize(600, 500);
+    	//定义左上角窗口位置
+    	glutInitWindowPosition(100, 100);
+    	//创建窗口
+    	glutCreateWindow(argv[0]);
+    	//清除颜色缓冲区
+    	glClearColor(0.0, 0.0, 0.0, 0.0);
+    	//显示函数
+    	glutDisplayFunc(display);
+    	//窗口大小改变时的响应
+    	glutReshapeFunc(reshape);
+    	//循环
+    	glutMainLoop();
+    	return 0;
+    }
         </code>
         </pre>
         <p>运行结果如下:</p>
