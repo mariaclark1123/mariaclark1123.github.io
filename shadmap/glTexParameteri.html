@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <title>OpenGL — 纹理过滤函数glTexParameteri()</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<html>
+<body>
+    <div class="container">
+        <hr>
+        <h1>OpenGL — 纹理过滤函数glTexParameteri()</h1>
+        <hr>
+        <br>
+        <h3>
+            PS:纹理坐标系用S-T来表示，S为横轴，T为纵轴。
+        </h3>
+        <ul>
+            <li> glTexParameter*(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST); </li>
+            <li> glTexParameter*(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);</li>
+        </ul>
+        
+        <br>
+        <ul>
+            <li> 第一个参数可以是GL_TEXTURE_1D或GL_TEXTURE_2D，即表明所用的纹理是一维的还是二维的； </li>
+            <li> 第二个参数指定滤波方法，其中参数值GL_TEXTURE_MAG_FILTER指定为放大滤波方法，GL_TEXTURE_MIN_FILTER指定为缩小滤波方法；</li>
+            <li> 第三个参数说明滤波方式。若选择GL_NEAREST则采用坐标最靠近象素中心的纹素，这有可能使图像走样；若选择GL_LINEAR则采用最靠近象素中心的四个象素的加权平均值。GL_NEAREST所需计算比GL_LINEAR要少，因而执行得更快，但GL_LINEAR提供了比较光滑的效果。从视觉效果上看，前者效果较差，在一些情况下锯齿现象明显，后者效果会较好（但如果纹理图象本身比较大，则两者在视觉效果上就会比较接近）。</li>
+        </ul>
+       
+        <br>
+        <p>
+            图象从纹理图象空间映射到帧缓冲图象空间(映射需要重新构造纹理图像,这样就会造成应用到多边形上的图像失真),这时就可用glTexParmeteri()函数来确定如何把纹理象素映射成像素.
+        </p>
+
+        <hr>
+        <br>
+        <p>
+            部分参数功能说明如下:
+        </p>
+        <p>
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        </p>
+        <ul>
+            <li> GL_TEXTURE_2D: 操作2D纹理.</li>
+            <li> GL_TEXTURE_WRAP_S: S方向上的贴图模式.</li>
+            <li> GL_CLAMP: 将纹理坐标限制在0.0,1.0的范围之内.如果超出了会如何呢.不会错误,只是会边缘拉伸填充.</li>
+        </ul>
+
+        <br>
+        <p>
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+        </p>
+        <ul>
+            <li> GL_TEXTURE_2D: 操作2D纹理.</li>
+            <li> GL_TEXTURE_WRAP_T: T方向上的贴图模式.</li>
+            <li> GL_CLAMP: 将纹理坐标限制在0.0,1.0的范围之内.如果超出了会如何呢.不会错误,只是会边缘拉伸填充.</li>
+        </ul>
+
+        <br>
+        <p>
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //这是纹理过滤
+        </p>
+        <ul>
+            <li> GL_TEXTURE_2D: 操作2D纹理.</li>
+            <li> GL_TEXTURE_MAG_FILTER: 放大过滤</li>
+            <li> GL_LINEAR: 线性过滤, 使用距离当前渲染像素中心最近的4个纹素加权平均值.</li>
+        </ul>
+        
+        <br>
+        <p>
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+        </p>
+        <ul>
+            <li> GL_TEXTURE_2D: 操作2D纹理.</li>
+            <li> GL_TEXTURE_MIN_FILTER: 缩小过滤</li>
+            <li> GL_LINEAR_MIPMAP_NEAREST: 使用GL_NEAREST对最接近当前多边形的解析度的两个层级贴图进行采样,然后用这两个值进行线性插值.</li>
+        </ul>
+
+        <hr>
+        <br>
+        <h3>参考文章</h3>
+        <ul>
+            <li><a href="http://www.cnblogs.com/qingsunny/archive/2013/03/25/2980664.html"> OpenGL——纹理过滤函数glTexParameteri() </a></li>
+        </ul>
+    </div>
+</body>
+
+<script src="js/js.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">
+<link rel="stylesheet" href="css/solarized-light.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('pre code').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+</html>
