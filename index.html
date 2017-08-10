@@ -322,18 +322,18 @@
  
  //(2)已知第一维
  char* a[M];//指针的数组
- for(int i=0; i<M; i++)
-     a[i]=new char[n];
+ for(int i = 0; i < M; i++)
+     a[i] = new char[n];
  printf("%d\n", sizeof(a));//4*M，指针数组
  printf("%d\n", sizeof(a[0]));//4，指针
- for(i=0; i<M; i++)
+ for(i = 0; i < M; i++)
      delete[] a[i];
 
  //(3)已知第一维，一次分配内存(保证内存的连续性)
  char* a[M];//指针的数组
  a[0] = new char[M*n];
- for(int i=1; i<M; i++)
-     a[i]=a[i-1] + n;
+ for(int i = 1; i < M; i++)
+     a[i] = a[i-1] + n;
  printf("%d\n", sizeof(a));//4*M，指针数组
  printf("%d\n", sizeof(a[0]));//4，指针
  delete[] a[0];
@@ -341,13 +341,13 @@
  //(4)两维都未知
  char **a;
  a = new char* [m];//分配指针数组
- for(int i=0; i<m; i++)
+ for(int i = 0; i < m; i++)
  {
-     a[i]=new char[n];//分配每个指针所指向的数组
+     a[i] = new char[n];//分配每个指针所指向的数组
  }
  printf("%d\n", sizeof(a));//4，指针
  printf("%d\n", sizeof(a[0]));//4，指针
- for(i=0; i<m; i++)
+ for(i = 0; i < m; i++)
      delete[] a[i];
  delete[] a;
 
@@ -355,9 +355,9 @@
  char **a;
  a = new char* [m];
  a[0] = new char[m * n];//一次性分配所有空间
- for(int i=1; i<m; i++)
+ for(int i = 1; i < m; i++)
  {
-     a[i]=a[i-1] + n;//分配每个指针所指向的数组
+     a[i] = a[i-1] + n;//分配每个指针所指向的数组
  }
  printf("%d\n", sizeof(a));//4，指针
  printf("%d\n", sizeof(a[0]));//4，指针
@@ -366,6 +366,8 @@
          </code>
          </pre>  
         <p><a href="http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html"> Reference:http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html </a></p>
+
+
     </div>
 </body>
 
