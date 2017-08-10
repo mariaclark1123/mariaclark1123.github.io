@@ -193,9 +193,6 @@
 
         <br>
         <hr>
-
-
-
         <h3>20170526</h3>
         <hr>
         <p><a href="3D/OpenGL-3D.html"> OpenGL - 显示一个简单的3D图形</a></p>
@@ -228,7 +225,133 @@
         <hr>
         <p><img align=left src="images/calligraphy1.jpg" width="300"></p>
 
-       
+
+        <br>
+        <hr>
+        <h3>20170810(距离CMU申请日还有22天)</h3>
+        <hr>
+        <p> 二维数组的动态分配及参数传递</p>
+        <pre>
+        <code class="javascript highlight">
+ //(1)已知第二维
+ char (*a)[N];//指向数组的指针
+ a = (char (*)[N])malloc(sizeof(char *) * m);
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//N，一维数组
+ free(a);
+ 
+ //(2)已知第一维
+ char* a[M];//指针的数组
+ int i;
+ 	
+ for(i=0; i<M; i++)
+     a[i]=(char *)malloc(sizeof(char) * n);
+ printf("%d\n", sizeof(a));//4*M，指针数组
+ printf("%d\n", sizeof(a[0]));//4，指针
+ for(i=0; i<M; i++)
+     free(a[i]);
+
+ //(3)已知第一维，一次分配内存(保证内存的连续性)
+ char* a[M];//指针的数组
+ int i;
+ a[0] = (char *)malloc(sizeof(char) * M * n);
+ for(i=1; i<M; i++)
+     a[i]=a[i-1] + n;
+ printf("%d\n", sizeof(a));//4*M，指针数组
+ printf("%d\n", sizeof(a[0]));//4，指针
+ free(a[0]);
+
+ //(4)两维都未知
+ char **a;
+ int i;
+ a = (char **)malloc(sizeof(char *) * m);//分配指针数组
+ for(i=0; i<m; i++)
+ {
+     a[i]=(char *)malloc(sizeof(char) * n);//分配每个指针所指向的数组
+ }
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//4，指针
+ for(i=0; i<m; i++)
+ {
+     free(a[i]);
+ }
+ free(a);
+
+ //(5)两维都未知，一次分配内存(保证内存的连续性)
+ char **a;
+ int i;
+ 	
+ a = (char **)malloc(sizeof(char *) * m);//分配指针数组
+ a[0] = (char *)malloc(sizeof(char) * m * n);//一次性分配所有空间
+ for(i=1; i<m; i++)
+ {
+     a[i]=a[i-1] + n;
+ }
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//4，指针
+ 		
+ free(a[0]);
+ free(a);
+
+</code>
+</pre>
+
+<p> C++动态分配二维数组</p>
+<pre>
+<code class="javascript highlight">
+ //(1)已知第二维
+ char (*a)[N];//指向数组的指针
+ a = new char[m][N];
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//N，一维数组
+ delete[] a;
+ 
+ //(2)已知第一维
+ char* a[M];//指针的数组
+ for(int i=0; i<M; i++)
+     a[i]=new char[n];
+ printf("%d\n", sizeof(a));//4*M，指针数组
+ printf("%d\n", sizeof(a[0]));//4，指针
+ for(i=0; i<M; i++)
+     delete[] a[i];
+
+ //(3)已知第一维，一次分配内存(保证内存的连续性)
+ char* a[M];//指针的数组
+ a[0] = new char[M*n];
+ for(int i=1; i<M; i++)
+     a[i]=a[i-1] + n;
+ printf("%d\n", sizeof(a));//4*M，指针数组
+ printf("%d\n", sizeof(a[0]));//4，指针
+ delete[] a[0];
+
+ //(4)两维都未知
+ char **a;
+ a = new char* [m];//分配指针数组
+ for(int i=0; i<m; i++)
+ {
+     a[i]=new char[n];//分配每个指针所指向的数组
+ }
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//4，指针
+ for(i=0; i<m; i++)
+     delete[] a[i];
+ delete[] a;
+
+ //(5)两维都未知，一次分配内存(保证内存的连续性)
+ char **a;
+ a = new char* [m];
+ a[0] = new char[m * n];//一次性分配所有空间
+ for(int i=1; i<m; i++)
+ {
+     a[i]=a[i-1] + n;//分配每个指针所指向的数组
+ }
+ printf("%d\n", sizeof(a));//4，指针
+ printf("%d\n", sizeof(a[0]));//4，指针
+ delete[] a[0];
+ delete[] a;
+         </code>
+         </pre>  
+        <p><a href="http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html"> Reference:http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html </a></p>
     </div>
 </body>
 
