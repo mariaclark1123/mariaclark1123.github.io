@@ -353,6 +353,19 @@
          </code>
          </pre>  
         <p><a href="http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html"> Reference:http://www.cnblogs.com/bigshow/archive/2009/01/03/1367661.html </a></p>
+        
+        
+        <br>
+        <hr>
+        <h3>20170816</h3>
+        <hr>
+        <p>Bezier曲线、B样条和NURBS都是根据控制点来生成曲线的，那么他们有什么区别了？</p>
+        <ul>
+            <li> Bezier曲线中的每个控制点都会影响整个曲线的形状，而B样条中的控制点只会影响整个曲线的一部分，显然B样条提供了更多的灵活性.</li>
+            <li> Bezier和B样条都是多项式参数曲线，不能表示一些基本的曲线，比如圆，所以引入了NURBS，即非均匀有理B样条来解决这个问题.</li>
+        </ul>
+        <p>Bezier曲线只是B样条的一个特例而已，而B样条又是NURBS的一个特例，它们的关系可以图示为：</p>
+        <p><img align=left src="images/bezier_nurbs_relation.bmp"></p>
 
 
     </div>
