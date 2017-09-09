@@ -184,7 +184,7 @@ a:hover, a:active {
 }
 .sidebar .logo-title {
   text-align: center;
-  padding-top: 240px;
+  padding-top: 50px;
 }
 .sidebar .logo-title .description {
   font-size: 14px;
@@ -661,7 +661,7 @@ a.btn {
     z-index: 1;
   }
   .sidebar .logo-title {
-    padding-top: 120px;
+    padding-top: 50px;
   }
   .sidebar .logo-title .title img {
     width: 100px;
@@ -693,3 +693,10 @@ a.btn {
     display: grid;
   }
 }
+
+.tag-list {padding-left: 0;}
+.tag-list-item {list-style-type: none;}
+.tag-list-item a {font-size: 14px;}
+
+.description p {padding: 0 50px;}
+.preview {width:150px;height:104px;float:left;margin-right: 15px;}
