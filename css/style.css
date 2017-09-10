@@ -184,17 +184,17 @@ a:hover, a:active {
 }
 .sidebar .logo-title {
   text-align: center;
-  padding-top: 50px;
+  padding-top:75px;
 }
 .sidebar .logo-title .description {
   font-size: 14px;
-  color: #565654;
+  color: #B3809F;
 }
 .sidebar .logo-title .logo {
   margin: 0 auto;
 }
 .sidebar .logo-title .title h3 {
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
@@ -203,7 +203,7 @@ a:hover, a:active {
 }
 .sidebar .logo-title .title a {
   text-decoration: none;
-  color: #464646;
+  color: #C2A2B2;
   font-size: 2rem;
   font-weight: bold;
 }
@@ -661,7 +661,7 @@ a.btn {
     z-index: 1;
   }
   .sidebar .logo-title {
-    padding-top: 50px;
+    padding-top: 75px;
   }
   .sidebar .logo-title .title img {
     width: 100px;
@@ -699,4 +699,4 @@ a.btn {
 .tag-list-item a {font-size: 14px;}
 
 .description p {padding: 0 50px;}
-.preview {width:150px;height:104px;float:left;margin-right: 15px;}
+.preview {width:150px;height:104px;float:left;margin-right: 15px;overflow: hidden}
