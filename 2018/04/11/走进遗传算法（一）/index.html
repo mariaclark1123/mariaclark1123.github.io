@@ -1,19 +1,23 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>走进遗传算法（一） · Fang-da</title><meta name="description" content="遗传算法（Genetic Algorithm, GA）起源于对生物系统所进行的计算机模拟研究。它是模仿自然界生物进化机制发展起来的随机全局搜索和优化方法，借鉴了达尔文的进化论和孟德尔的遗传学说。其本质是一种高效、并行、全局搜索的方法，能在搜索过程中自动获取和积累有关搜索空间的知识，并自适应地控制搜索"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>走进遗传算法（一）</a></h3></div><div class="post-content"><h3 id="遗传算法（Genetic-Algorithm-GA）"><a href="#遗传算法（Genetic-Algorithm-GA）" class="headerlink" title="遗传算法（Genetic Algorithm, GA）"></a>遗传算法（Genetic Algorithm, GA）</h3><p>起源于对生物系统所进行的计算机模拟研究。它是模仿自然界生物进化机制发展起来的随机全局搜索和优化方法，借鉴了达尔文的进化论和孟德尔的遗传学说。其本质是一种高效、并行、全局搜索的方法，能在搜索过程中自动获取和积累有关搜索空间的知识，并自适应地控制搜索过程以求得最佳解。  </p>
-<h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><ul>
-<li>基因型(genotype)：性状染色体的内部表现。   </li>
-<li>表现型(phenotype)：染色体决定的性状的外部表现，或者说，根据基因型形成的个体的外部表现。  </li>
-<li>进化(evolution)：种群逐渐适应生存环境，品质不断得到改良。生物的进化是以种群的形式进行的。  </li>
-<li>适应度(fitness)：度量某个物种对于生存环境的适应程度。 </li>
-<li>选择(selection)：以一定的概率从种群中选择若干个个体。一般，选择过程是一种基于适应度的优胜劣汰的过程。  </li>
-<li>复制(reproduction)：细胞分裂时，遗传物质DNA通过复制而转移到新产生的细胞中，新细胞就继承了旧细胞的基因。  </li>
-<li>交叉(crossover)：两个染色体的某一相同位置处DNA被切断，前后两串分别交叉组合形成两个新的染色体。也称基因重组或杂交。  </li>
-<li>变异(mutation)：复制时可能（很小的概率）产生某些复制差错，变异产生新的染色体，表现出新的性状。  </li>
-<li>编码(coding)：DNA中遗传信息在一个长链上按一定的模式排列。遗传编码可看作从表现型到基因型的映射。  </li>
-<li>解码(decoding)：基因型到表现型的映射。    </li>
-<li>个体（individual）：指染色体带有特征的实体。  </li>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>走进遗传算法（一） · Fang-da</title><meta name="description" content="遗传算法（Genetic Algorithm, GA）
+起源于对生物系统所进行的计算机模拟研究。它是模仿自然界生物进化机制发展起来的随机全局搜索和优化方法，借鉴了达尔文的进化论和孟德尔的遗传学说。其本质是一种高效、并行、全局搜索的方法，能在搜索过程中自动获取和积累有关搜索空间的知识，并自适应地控制搜"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>走进遗传算法（一）</a></h3></div><div class="post-content"><h3 id="遗传算法genetic-algorithm-ga"><a class="markdownIt-Anchor" href="#遗传算法genetic-algorithm-ga"></a> 遗传算法（Genetic Algorithm, GA）</h3>
+<p>起源于对生物系统所进行的计算机模拟研究。它是模仿自然界生物进化机制发展起来的随机全局搜索和优化方法，借鉴了达尔文的进化论和孟德尔的遗传学说。其本质是一种高效、并行、全局搜索的方法，能在搜索过程中自动获取和积累有关搜索空间的知识，并自适应地控制搜索过程以求得最佳解。</p>
+<h3 id="相关术语"><a class="markdownIt-Anchor" href="#相关术语"></a> 相关术语</h3>
+<ul>
+<li>基因型(genotype)：性状染色体的内部表现。</li>
+<li>表现型(phenotype)：染色体决定的性状的外部表现，或者说，根据基因型形成的个体的外部表现。</li>
+<li>进化(evolution)：种群逐渐适应生存环境，品质不断得到改良。生物的进化是以种群的形式进行的。</li>
+<li>适应度(fitness)：度量某个物种对于生存环境的适应程度。</li>
+<li>选择(selection)：以一定的概率从种群中选择若干个个体。一般，选择过程是一种基于适应度的优胜劣汰的过程。</li>
+<li>复制(reproduction)：细胞分裂时，遗传物质DNA通过复制而转移到新产生的细胞中，新细胞就继承了旧细胞的基因。</li>
+<li>交叉(crossover)：两个染色体的某一相同位置处DNA被切断，前后两串分别交叉组合形成两个新的染色体。也称基因重组或杂交。</li>
+<li>变异(mutation)：复制时可能（很小的概率）产生某些复制差错，变异产生新的染色体，表现出新的性状。</li>
+<li>编码(coding)：DNA中遗传信息在一个长链上按一定的模式排列。遗传编码可看作从表现型到基因型的映射。</li>
+<li>解码(decoding)：基因型到表现型的映射。</li>
+<li>个体（individual）：指染色体带有特征的实体。</li>
 <li>种群（population）：个体的集合，该集合内个体数称为种群的大小。</li>
 </ul>
-<h3 id="遗传算法的机理"><a href="#遗传算法的机理" class="headerlink" title="遗传算法的机理"></a>遗传算法的机理</h3><p>在遗传算法里，优化问题的解被称为个体，它表示为一个变量序列，叫做染色体或者基因串。染色体一般被表达为简单的字符串或数字串，不过也有其他的依赖于特殊问题的表示方法适用，这一过程称为编码。首先，算法随机生成一定数量的个体，有时候操作者也可以干预这个随机产生过程，以提高初始种群的质量。在每一代中，都会评价每一个体，并通过计算适应度函数得到适应度数值。按照适应度排序种群个体，适应度高的在前面。这里的“高”是相对于初始的种群的低适应度而言。</p>
+<h3 id="遗传算法的机理"><a class="markdownIt-Anchor" href="#遗传算法的机理"></a> 遗传算法的机理</h3>
+<p>在遗传算法里，优化问题的解被称为个体，它表示为一个变量序列，叫做染色体或者基因串。染色体一般被表达为简单的字符串或数字串，不过也有其他的依赖于特殊问题的表示方法适用，这一过程称为编码。首先，算法随机生成一定数量的个体，有时候操作者也可以干预这个随机产生过程，以提高初始种群的质量。在每一代中，都会评价每一个体，并通过计算适应度函数得到适应度数值。按照适应度排序种群个体，适应度高的在前面。这里的“高”是相对于初始的种群的低适应度而言。</p>
 <p>下一步是产生下一代个体并组成种群。这个过程是通过选择和繁殖完成，其中繁殖包括交配（crossover，在算法研究领域中我们称之为交叉操作）和突变（mutation）。选择则是根据新个体的适应度进行，但同时不意味着完全以适应度高低为导向，因为单纯选择适应度高的个体将可能导致算法快速收敛到局部最优解而非全局最优解，我们称之为早熟。作为折中，遗传算法依据原则：适应度越高，被选择的机会越高，而适应度低的，被选择的机会就低。初始的数据可以通过这样的选择过程组成一个相对优化的群体。之后，被选择的个体进入交配过程。一般的遗传算法都有一个交配概率（又称为交叉概率），范围一般是0.6~1，这个交配概率反映两个被选中的个体进行交配的概率。例如，交配概率为0.8，则80%的“夫妻”会生育后代。每两个个体通过交配产生两个新个体，代替原来的“老”个体，而不交配的个体则保持不变。交配父母的染色体相互交换，从而产生两个新的染色体，第一个个体前半段是父亲的染色体，后半段是母亲的，第二个个体则正好相反。不过这里的半段并不是真正的一半，这个位置叫做交配点，也是随机产生的，可以是染色体的任意位置。再下一步是突变，通过突变产生新的“子”个体。一般遗传算法都有一个固定的突变常数（又称为变异概率），通常是0.1或者更小，这代表变异发生的概率。根据这个概率，新个体的染色体随机的突变，通常就是改变染色体的一个字节（0变到1，或者1变到0）。</p>
 <p>经过这一系列的过程（选择、交配和突变），产生的新一代个体不同于初始的一代，并一代一代向增加整体适应度的方向发展，因为总是更常选择最好的个体产生下一代，而适应度低的个体逐渐被淘汰掉。这样的过程不断的重复：评价每个个体，计算适应度，两两交配，然后突变，产生第三代。周而复始，直到终止条件满足为止。一般终止条件有以下几种：</p>
 <ul>
@@ -21,20 +25,23 @@
 <li>计算耗费的资源限制（例如计算时间、计算占用的内存等）；</li>
 <li>一个个体已经满足最优值的条件，即最优值已经找到；</li>
 <li>适应度已经达到饱和，继续进化不会产生适应度更好的个体；</li>
-<li>人为干预；<br>以及以上两种或更多种的组合。 </li>
+<li>人为干预；<br>
+以及以上两种或更多种的组合。</li>
 </ul>
-<h3 id="遗传算法的应用"><a href="#遗传算法的应用" class="headerlink" title="遗传算法的应用"></a>遗传算法的应用</h3><p>遗传算法的有趣应用很多，诸如寻路问题，8数码问题，囚犯困境，动作控制，找圆心问题（在一个不规则的多边形中，寻找一个包含在该多边形内的最大圆圈的圆心），TSP问题，生产调度问题，人工生命模拟等。</p>
-<h3 id="遗传算法的特点"><a href="#遗传算法的特点" class="headerlink" title="遗传算法的特点"></a>遗传算法的特点</h3><ul>
-<li>遗传算法在适应度函数选择不当的情况下有可能收敛于局部最优，而不能达到全局最优。   </li>
-<li>初始种群的数量很重要，如果初始种群数量过多，算法会占用大量系统资源；如果初始种群数量过少，算法很可能忽略掉最优解。  </li>
-<li>对于每个解，一般根据实际情况进行编码，这样有利于编写变异函数和适应度函数(Fitness Function)。  </li>
+<h3 id="遗传算法的应用"><a class="markdownIt-Anchor" href="#遗传算法的应用"></a> 遗传算法的应用</h3>
+<p>遗传算法的有趣应用很多，诸如寻路问题，8数码问题，囚犯困境，动作控制，找圆心问题（在一个不规则的多边形中，寻找一个包含在该多边形内的最大圆圈的圆心），TSP问题，生产调度问题，人工生命模拟等。</p>
+<h3 id="遗传算法的特点"><a class="markdownIt-Anchor" href="#遗传算法的特点"></a> 遗传算法的特点</h3>
+<ul>
+<li>遗传算法在适应度函数选择不当的情况下有可能收敛于局部最优，而不能达到全局最优。</li>
+<li>初始种群的数量很重要，如果初始种群数量过多，算法会占用大量系统资源；如果初始种群数量过少，算法很可能忽略掉最优解。</li>
+<li>对于每个解，一般根据实际情况进行编码，这样有利于编写变异函数和适应度函数(Fitness Function)。</li>
 <li>在编码过的遗传算法中，每次变异的编码长度也影响到遗传算法的效率。如果变异代码长度过长，变异的多样性会受到限制；如果变异代码过短，变异的效率会非常低下，选择适当的变异长度是提高效率的关键。</li>
-<li>变异率也是一个重要的参数。  </li>
-<li>对于动态数据，用遗传算法求最优解比较困难，因为染色体种群很可能过早地收敛，而对以后变化了的数据不再产生变化。对于这个问题，研究者提出了一些方法增加基因的多样性，从而防止过早的收敛。其中一种是所谓触发式超级变异，就是当染色体群体的质量下降（彼此的区别减少）时增加变异概率；另一种叫随机外来染色体，是偶尔加入一些全新的随机生成的染色体个体，从而增加染色体多样性。  </li>
-<li>选择过程很重要，但交叉和变异的重要性存在争议。一种观点认为交叉比变异更重要，因为变异仅仅是保证不丢失某些可能的解；而另一种观点则认为交叉过程的作用只不过是在种群中推广变异过程所造成的更新，对于初期的种群来说，交叉几乎等效于一个非常大的变异率，而这么大的变异很可能影响进化过程。  </li>
-<li>遗传算法很快就能找到良好的解，即使是在很复杂的解空间中。  </li>
-<li>遗传算法并不一定总是最好的优化策略，优化问题要具体情况具体分析。所以在使用遗传算法的同时，也可以尝试其他算法，互相补充，甚至根本不用遗传算法。  </li>
-<li>遗传算法不能解决那些“大海捞针”的问题，所谓“大海捞针”问题就是没有一个确切的适应度函数表征个体好坏的问题，使得算法的进化失去导向。  </li>
+<li>变异率也是一个重要的参数。</li>
+<li>对于动态数据，用遗传算法求最优解比较困难，因为染色体种群很可能过早地收敛，而对以后变化了的数据不再产生变化。对于这个问题，研究者提出了一些方法增加基因的多样性，从而防止过早的收敛。其中一种是所谓触发式超级变异，就是当染色体群体的质量下降（彼此的区别减少）时增加变异概率；另一种叫随机外来染色体，是偶尔加入一些全新的随机生成的染色体个体，从而增加染色体多样性。</li>
+<li>选择过程很重要，但交叉和变异的重要性存在争议。一种观点认为交叉比变异更重要，因为变异仅仅是保证不丢失某些可能的解；而另一种观点则认为交叉过程的作用只不过是在种群中推广变异过程所造成的更新，对于初期的种群来说，交叉几乎等效于一个非常大的变异率，而这么大的变异很可能影响进化过程。</li>
+<li>遗传算法很快就能找到良好的解，即使是在很复杂的解空间中。</li>
+<li>遗传算法并不一定总是最好的优化策略，优化问题要具体情况具体分析。所以在使用遗传算法的同时，也可以尝试其他算法，互相补充，甚至根本不用遗传算法。</li>
+<li>遗传算法不能解决那些“大海捞针”的问题，所谓“大海捞针”问题就是没有一个确切的适应度函数表征个体好坏的问题，使得算法的进化失去导向。</li>
 <li>对于任何一个具体的优化问题，调节遗传算法的参数可能会有利于更好更快收敛，这些参数包括个体数目、交叉率和变异率。例如太大的变异率会导致丢失最优解，而过小的变异率会导致算法过早的收敛于局部最优点。对于这些参数的选择，现在还没有实用的上下限。</li>
 <li>适应度函数对于算法的速度和效果也很重要。</li>
 </ul>
