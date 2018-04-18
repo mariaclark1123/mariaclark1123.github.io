@@ -11,6 +11,7 @@
 <p>文章的正文支持markdown格式，建议你先学习一下它的语法。markdown不像html似的一大堆标签，很简单，只有几个符号。   </p>
 <p>新建、删除或修改文章后，不需要重启hexo server，刷新一下即可预览。   </p>
 <h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><p>文章可以拥有如下属性：  </p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -59,6 +60,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>动态博客中通过发布文章页面设置的各种属性，在hexo里要这样设置。  </p>
 <h3 id="分类和标签"><a href="#分类和标签" class="headerlink" title="分类和标签"></a>分类和标签</h3><p>例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">categories:</div><div class="line">- 日记</div><div class="line">tags:</div><div class="line">- Hexo</div><div class="line">- node.js</div></pre></td></tr></table></figure>
@@ -66,6 +68,7 @@
 <h3 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h3><p>如果你修改了layout，在scaffolds文件夹里一定要有名字对应的模版文件，否则会采用默认模版。  </p>
 <h3 id="文件名"><a href="#文件名" class="headerlink" title="文件名"></a>文件名</h3><p>在配置文件中的new_post_name项可以设置文件名，默认为:title，也就是你在命令行输入的名字。  </p>
 <p>文件名可以为下面几个变量和字符串常量的任意组合：    </p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -100,6 +103,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h3><p>草稿相当于很多博客都有的“私密文章”功能。  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new draft &quot;new draft&quot;</div></pre></td></tr></table></figure>
 <p>会在source/_drafts目录下生成一个new-draft.md文件。但是这个文件不被显示在页面上，链接也访问不到。也就是说如果你想把某一篇文章移除显示，又不舍得删除，可以把它移动到_drafts目录之中。  </p>
