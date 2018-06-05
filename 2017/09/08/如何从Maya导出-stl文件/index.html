@@ -8,17 +8,17 @@
 <p><a href="https://knowledge.autodesk.com/zh-hans/support/maya/troubleshooting/caas/sfdcarticles/sfdcarticles/CHS/Maya-2017-no-stl-export.html" target="_blank" rel="external">Maya 2017 - 无 STL 导出</a></p>
 <p>解答的图片被我无情地抠出贴到了下面：</p>
 <p><strong>请大家务必注意第一张图的红框框内的: Version: Autodesk Maya2017 Update3</strong></p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl1.jpg?raw=true" alt=""></p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl2.jpg?raw=true" alt=""></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl1.jpg?raw=true" alt=""> </p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl2.jpg?raw=true" alt=""> </p>
 <p>恩恩，只有这两张图，让人感觉非常的好操作~</p>
 <p>因为我的Maya也是上个月从学校的software里面下的，想想应该是最新版本，然后我便如法炮制，在Windows-&gt;Setting/Preferences-&gt;Plug-in  Manager中找到ATFPlugin.mll插件，发现已经被勾选了，如下图</p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl3.png?raw=true" alt=""></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl3.png?raw=true" alt=""> </p>
 <p>这时我就产生了一点点疑惑，既然插件都装了应该是可以导出stl的吧，但是为什么export的时候没有stl的格式选择呢。</p>
 <p>于是开始研究官方提供的第二张图，发现它export的时候option竟然有选择File type，而我的export的时候并不提供File type的选择，如下图</p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl4.png?raw=true" alt=""></p>
-<p>用找不同的方式仔仔细细的看了许久官网的图，最后从自己电脑的Maya2017里的Help-&gt;About Autodesk Maya中发现了一个细节差别，虽然同样是Maya2017，但我装的并不是Maya2017 Update3!!!</p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl4.png?raw=true" alt=""> </p>
+<p>用找不同的方式仔仔细细的看了许久官网的图，最后从自己电脑的Maya2017里的Help-&gt;About Autodesk Maya中发现了一个细节差别，虽然同样是Maya2017，但我装的并不是Maya2017 Update3!!!!!</p>
 <p>可想而知，最后我只好在网上找了一个在线obj转stl的程序把我的stl文件导出来了。。。</p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl5.png?raw=true" alt=""></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/mayastl5.png?raw=true" alt=""> </p>
 <blockquote>
 <p>Finally, 推荐大家先从Maya把obj文件导出来后，再用online的文件转换系统转成stl就好（有Maya2017 Update3及以上的除外）</p>
 </blockquote>
@@ -28,14 +28,10 @@
 <p><strong>这里普及一下stl的概念：</strong></p>
 <p>美国3D Systems公司于1987年制定了STL (STereoLithography)文件格式,它以小三角面片为基本单位,离散地近似描述三维实体模型的表面.STL 文件最初应用于快速成形(Rapid Prototyping ,RP)领域 ,并迅速成为RP领域事实上的工业标准;同时,STL 文件也在快速成形之外的各种需要三维实体模型的领域中获得了广泛的应用.</p>
 <p><strong>STL文件规则:</strong></p>
-<p>(1)共顶点规则<br>
-每一个三角面片必须与其相邻的每一个面片共两个顶点 ,即一个三角面片的顶点不能落在相邻的任何三角面片的边上;</p>
-<p>(2)取向规则<br>
-单个面片法向量符合右手法则且其法向量必须指向实体外面;</p>
-<p>(3)充满规则<br>
-小三角面片必须布满三维模型的所有表面,不得有任何遗漏;</p>
-<p>(4)取值规则<br>
-每个顶点的坐标值必须为非负 ,即 STL 文件的实体应该在坐标系的第一象限.</p>
+<p>(1)共顶点规则<br>每一个三角面片必须与其相邻的每一个面片共两个顶点 ,即一个三角面片的顶点不能落在相邻的任何三角面片的边上;</p>
+<p>(2)取向规则<br>单个面片法向量符合右手法则且其法向量必须指向实体外面;</p>
+<p>(3)充满规则<br>小三角面片必须布满三维模型的所有表面,不得有任何遗漏;</p>
+<p>(4)取值规则<br>每个顶点的坐标值必须为非负 ,即 STL 文件的实体应该在坐标系的第一象限.</p>
 <p><strong>STL文件的分类:</strong></p>
 <p>目前的STL文件格式包括二进制文件(BINARY)和文本文件(ASCII)两种.</p>
 <ul>
@@ -43,13 +39,12 @@
 </ul>
 <p>二进制STL文件用固定的字节数来给出三角面片的几何信息。</p>
 <p>前面84个字节描述3D模型文件信息。文件起始的80个字节是文件头,用于存贮零件名;紧接着用 4个字节的整数来描述模型的三角面片个数。</p>
-<p>后面逐个给出每个三角面片的几何信息.每个三角面片占用固定的50个字节,依次是 3个4 字节浮点数(角面片的法矢量)3个4 字节浮点数(第一个个顶点的坐标)3个4 字节浮点数(第二个顶点的坐标)3个4 字节浮点数(第三个顶点的坐标)最后2个字节用来描述三角面片的属性信息。<br>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/stl2.jpg?raw=true" alt=""></p>
+<p>后面逐个给出每个三角面片的几何信息.每个三角面片占用固定的50个字节,依次是 3个4 字节浮点数(角面片的法矢量)3个4 字节浮点数(第一个个顶点的坐标)3个4 字节浮点数(第二个顶点的坐标)3个4 字节浮点数(第三个顶点的坐标)最后2个字节用来描述三角面片的属性信息。<br><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/stl2.jpg?raw=true" alt=""></p>
 <ul>
 <li>ASCII文件格式</li>
 </ul>
 <p>ASCII码格式的STL文件逐行给出三角面片的几何信息，每一行以1个或2个关键字开头。在STL文件中的三角面片的信息单元 facet 是一个带矢量方向的三角面片，STL 三维模型就是由一系列这样的三角面片构成。整个STL文件首行给出了文件路径及文件名。在一个 STL 文件中，每一个 facet 由 7 行数据组成，facet normal是三角面片指向实体外部的法矢量坐标，outer loop说明随后的3行数据分别是三角面片的 3 个顶点坐标，3 顶点沿指向实体外部的法矢量方向逆时针排列。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">solid filename stl   <span class="comment">//自定义文件头 </span></div><div class="line">   facet normal x y z  <span class="comment">//三角面片法向量的3个</span></div><div class="line">       outer loop </div><div class="line">           vertex x y z       <span class="comment">//三角面片第一个顶点坐标 </span></div><div class="line">           vertex x y z       <span class="comment">//三角面片第二个顶点坐标 </span></div><div class="line">           vertex x y z       <span class="comment">//三角面片第三个顶点坐标 </span></div><div class="line">      endloop   </div><div class="line">   endfacet         <span class="comment">//完成一个三角面片定义 </span></div><div class="line">   …… </div><div class="line">endsolid filename stl ∥整个STL文件定义结束</div></pre></td></tr></table></figure>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/stl1.jpg?raw=true" alt=""></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/stl1.jpg?raw=true" alt=""> </p>
 <hr>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-09-08</span><i class="fa fa-tag"></i><a href="/tags/段子/" title="段子" class="tag">段子 </a><a href="/tags/模型处理/" title="模型处理" class="tag">模型处理 </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2017/09/08/如何从Maya导出-stl文件/,Fang-da,如何从Maya导出 stl文件,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/09/12/好用的工具链接/" title="好用的工具链接" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/09/06/OpenGL-光照基础/" title="OpenGL 光照基础" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
