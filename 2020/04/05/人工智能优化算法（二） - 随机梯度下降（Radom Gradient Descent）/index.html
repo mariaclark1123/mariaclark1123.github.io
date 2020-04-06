@@ -22,12 +22,8 @@
 <p>随机梯度下降（stochastic gradient descent，SGD）减少了每次迭代的计算开销。在随机梯度下降的每次迭代中，我们随机均匀采样的一个样本索引 i∈{1,…,n} ，并计算梯度 <img src="http://latex.codecogs.com/gif.latex?\nabla f_i(\boldsymbol{x})"> 来迭代 x ：</p>
 <p> <img src="http://latex.codecogs.com/gif.latex?E_i \nabla f_i(\boldsymbol{x}) = \frac{1}{n} \sum_{i = 1}^n \nabla f_i(\boldsymbol{x}) = \nabla f(\boldsymbol{x})."> </p>
 <p>这意味着，平均来说，随机梯度是对梯度的一个良好的估计。</p>
-<p>下面我们通过在梯度中添加均值为0的随机噪声来模拟随机梯度下降，以此来比较它与梯度下降的区别。</p>
-<pre><code class="lang-python">def sgd_2d(x1, x2, s1, s2):
-    return (x1 - eta * (2 * x1 + np.random.normal(0.1)),
-            x2 - eta * (4 * x2 + np.random.normal(0.1)), 0, 0)
-show_trace_2d(f_2d, train_2d(sgd_2d))
-</code></pre>
+<p>下面我们通过在梯度中添加均值为0的随机噪声来模拟随机梯度下降，以此来比较它与梯度下降的区别。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sgd_2d</span><span class="params">(x1, x2, s1, s2)</span>:</span></div><div class="line">    <span class="keyword">return</span> (x1 - eta * (<span class="number">2</span> * x1 + np.random.normal(<span class="number">0.1</span>)),</div><div class="line">            x2 - eta * (<span class="number">4</span> * x2 + np.random.normal(<span class="number">0.1</span>)), <span class="number">0</span>, <span class="number">0</span>)</div><div class="line">            </div><div class="line">show_trace_2d(f_2d, train_2d(sgd_2d))</div></pre></td></tr></table></figure>
 <p><strong>epoch 20, x1 -0.286388, x2 -0.076428</strong></p>
 <p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/gd5.png?raw=true" alt=""></p>
 <p>可以看到，随机梯度下降中自变量的迭代轨迹相对于梯度下降中的来说更为曲折。这是由于实验所添加的噪声使模拟的随机梯度的准确度下降。在实际中，这些噪声通常指训练数据集中的无意义的干扰。</p>
