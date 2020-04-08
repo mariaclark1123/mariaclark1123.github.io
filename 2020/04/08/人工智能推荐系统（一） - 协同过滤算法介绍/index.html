@@ -1,23 +1,77 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>人工智能推荐系统（一） - 协同过滤算法介绍 · Fang-da</title><meta name="description" content="推荐算法概述推荐算法是非常古老的，在机器学习还没有兴起的时候就有需求和应用了。概括来说，可以分为以下5种：
-1）基于内容的推荐：这一类一般依赖于自然语言处理NLP的一些知识，通过挖掘文本的TF-IDF特征向量，来得到用户的偏好，进而做推荐。这类推荐算法可以找到用户独特的小众喜好，而且还有较好的解释性"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>人工智能推荐系统（一） - 协同过滤算法介绍</a></h3></div><div class="post-content"><h3 id="推荐算法概述"><a href="#推荐算法概述" class="headerlink" title="推荐算法概述"></a>推荐算法概述</h3><p>推荐算法是<strong>非常古老的</strong>，在机器学习还没有兴起的时候就有需求和应用了。概括来说，可以分为以下5种：</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>人工智能推荐系统（一） - 协同过滤算法介绍 · Fang-da</title><meta name="description" content="推荐算法概述
+推荐算法是非常古老的，在机器学习还没有兴起的时候就有需求和应用了。概括来说，可以分为以下5种：
+1）基于内容的推荐：这一类一般依赖于自然语言处理NLP的一些知识，通过挖掘文本的TF-IDF特征向量，来得到用户的偏好，进而做推荐。这类推荐算法可以找到用户独特的小众喜好，而且还有较好的解释"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>人工智能推荐系统（一） - 协同过滤算法介绍</a></h3></div><div class="post-content"><h3 id="推荐算法概述"><a class="markdownIt-Anchor" href="#推荐算法概述"></a> 推荐算法概述</h3>
+<p>推荐算法是<strong>非常古老的</strong>，在机器学习还没有兴起的时候就有需求和应用了。概括来说，可以分为以下5种：</p>
 <p>1）基于内容的推荐：这一类一般依赖于自然语言处理NLP的一些知识，通过挖掘文本的TF-IDF特征向量，来得到用户的偏好，进而做推荐。这类推荐算法可以找到用户独特的小众喜好，而且还有较好的解释性。这一类由于需要NLP的基础，本文就不多讲，在后面专门讲NLP的时候再讨论。</p>
 <p>2）协调过滤推荐：本文后面要专门讲的内容。协调过滤是推荐算法中目前最主流的种类，花样繁多，在工业界已经有了很多广泛的应用。它的优点是不需要太多特定领域的知识，可以通过基于统计的机器学习算法来得到较好的推荐效果。最大的优点是工程上容易实现，可以方便应用到产品中。目前绝大多数实际应用的推荐算法都是协同过滤推荐算法。</p>
 <p>3）混合推荐：这个类似我们机器学习中的集成学习，博才众长，通过多个推荐算法的结合，得到一个更好的推荐算法，起到三个臭皮匠顶一个诸葛亮的作用。比如通过建立多个推荐算法的模型，最后用投票法决定最终的推荐结果。混合推荐理论上不会比单一任何一种推荐算法差，但是使用混合推荐，算法复杂度就提高了，在实际应用中有使用，但是并没有单一的协调过滤推荐算法，比如逻辑回归之类的二分类推荐算法广泛。</p>
 <p>4）基于规则的推荐：这类算法常见的比如基于最多用户点击，最多用户浏览等，属于大众型的推荐方法，在目前的大数据时代并不主流。</p>
 <p>5）基于人口统计信息的推荐：这一类是最简单的推荐算法了，它只是简单的根据系统用户的基本信息发现用户的相关程度，然后进行推荐，目前在大型系统中已经较少使用。</p>
-<h3 id="协同过滤推荐算法"><a href="#协同过滤推荐算法" class="headerlink" title="协同过滤推荐算法"></a>协同过滤推荐算法</h3><p>协同过滤(Collaborative Filtering)作为推荐算法中最经典的类型，包括<strong>在线的协同</strong>和<strong>离线的过滤</strong>两部分。所谓在线协同，就是通过在线数据找到用户可能喜欢的物品，而离线过滤，则是过滤掉一些不值得推荐的数据，比比如推荐值评分低的数据，或者虽然推荐值高但是用户已经购买的数据。</p>
+<h3 id="协同过滤推荐算法"><a class="markdownIt-Anchor" href="#协同过滤推荐算法"></a> 协同过滤推荐算法</h3>
+<p>协同过滤(Collaborative Filtering)作为推荐算法中最经典的类型，包括<strong>在线的协同</strong>和<strong>离线的过滤</strong>两部分。所谓在线协同，就是通过在线数据找到用户可能喜欢的物品，而离线过滤，则是过滤掉一些不值得推荐的数据，比比如推荐值评分低的数据，或者虽然推荐值高但是用户已经购买的数据。</p>
 <p>协同过滤的模型一般为m个物品，m个用户的数据，只有部分用户和部分数据之间是有评分数据的，其它部分评分是空白，此时我们要用已有的部分稀疏数据来预测那些空白的物品和数据之间的评分关系，找到最高评分的物品推荐给用户。</p>
 <p>一般来说，协同过滤推荐分为三种类型。第一种是<strong>基于用户(user-based)的协同过滤</strong>，第二种是<strong>基于物品(item-based)的协同过滤</strong>，第三种是<strong>基于模型(model based)的协同过滤</strong>。</p>
 <p>基于用户(user-based)的协同过滤主要考虑的是用户和用户之间的相似度，只要找出相似用户喜欢的物品，并预测目标用户对对应物品的评分，就可以找到评分最高的若干个物品推荐给用户。</p>
 <p>而基于物品(item-based)的协同过滤和基于用户的协同过滤类似，只不过这时我们转向找到物品和物品之间的相似度，只有找到了目标用户对某些物品的评分，那么我们就可以对相似度高的类似物品进行预测，将评分最高的若干个相似物品推荐给用户。比如你在网上买了一本机器学习相关的书，网站马上会推荐一堆机器学习，大数据相关的书给你，这里就明显用到了基于项目的协同过滤思想。</p>
-<h3 id="基于用户（User-based）的协同过滤"><a href="#基于用户（User-based）的协同过滤" class="headerlink" title="基于用户（User-based）的协同过滤"></a>基于用户（User-based）的协同过滤</h3><p><strong>概念</strong></p>
+<h3 id="基于用户user-based的协同过滤"><a class="markdownIt-Anchor" href="#基于用户user-based的协同过滤"></a> 基于用户（User-based）的协同过滤</h3>
+<h4 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h4>
 <p>首先用一个词就能很好的解释什么叫做基于用户的协同过滤算法：【臭味相投】。虽然是贬义词，但也说明了，具有类似特征的人群，他们喜欢的东西很多也是一样的。因此，在推荐系统中，假设要为A用户推荐物品，可以通过寻找他的“邻居”——与A具有相似兴趣的用户。把那些用户喜欢的，而A用户却不曾听说的东西推荐给A。</p>
-<p><strong>相似度算法</strong></p>
-<p>那么问题来了，我们如何判断A用户与哪些用户相似呢？关键就是根据用户过去的行为轨迹，计算用户相似度。<br>目前较多的相似度算法有：</p>
+<h4 id="相似度算法"><a class="markdownIt-Anchor" href="#相似度算法"></a> 相似度算法</h4>
+<p>那么问题来了，我们如何判断A用户与哪些用户相似呢？关键就是根据用户过去的行为轨迹，计算用户相似度。<br>
+目前较多的相似度算法有：</p>
 <p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/cf1.jpeg?raw=true" alt=""></p>
-<h3 id="三种协同过滤比较："><a href="#三种协同过滤比较：" class="headerlink" title="三种协同过滤比较："></a>三种协同过滤比较：</h3><p><strong>基于用户的协同过滤</strong>需要在线找用户和用户之间的相似度关系，计算复杂度肯定会比基于基于项目的协同过滤高。但是可以帮助用户找到<strong>新类别的有惊喜的物品</strong>。</p>
+<p><strong>这里以Jaccard相似度算法模拟基于用户的协同过滤过程：</strong><br>
+<strong>1. 计算用户间的相似度</strong></p>
+ <center><img src="http://latex.codecogs.com/gif.latex?w_{uv} = \frac{|N(u)\cap N(v)|}{\sqrt{|N(u)| |N(v)|}}"></center>
+ N(u)表示用户u感兴趣的物品集合，N(v)表示用户v感兴趣的物品集合
+<p>简单解释一下这个公式，分母是两个集合的绝对值相乘，分子是集合的交集的绝对值，集合绝对值是这个集合中元素的个数。假设A用户喜欢{a,b,d}，B用户喜欢{a,c}，则他俩相似度计算如下：</p>
+ <center><img src="http://latex.codecogs.com/gif.latex?w_{AB} = \frac{|\{a,b,d\}\cap \{a,c\}|}{\sqrt{|\{a,b,d\}| |\{a,c\}|}} = \frac{1}{\sqrt{6}}"></center>
+<p><strong>2. 倒排</strong></p>
+<p>但是这么简单粗暴是有问题的，因为很多用户其实完全没有共同喜好的，也就是分子会为0。这么多无意义的计算会给我们增加很大的开销，所以我们应该先做一个预处理，把有关联的用户筛选出来，只计算这些有关联的用户的兴趣相似度。倒排法有效的为我们解决了这个问题：</p>
+<p>2.1 首先将用户–物品表转化为物品–用户表（倒排表）<br>
+2.2 根据倒排表画出相似度矩阵（比如倒排表第一行说明AB BC AC有关联，就在矩阵中置1，第二行说明AC有关联，又加1变为了2）<br>
+<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/cf2.png?raw=true" alt=""><br>
+矩阵中为0的我们就不需要去计算它们的兴趣相似度了。<br>
+得到用户相似度之后，我们开始计算用户对物品的兴趣度。</p>
+<p><strong>3. 计算用户对物品的兴趣度</strong><br>
+用户u对物品i的感兴趣程度公式如下：</p>
+<center><img src="http://latex.codecogs.com/gif.latex?p(u,i) = \sum_{v\in S(u,k)\cap N(i)} w_{uv}r_{vi}"></center>
+<p>S(u, K)是与用户u兴趣最接近的K个用户的集合， N(i)是对物品i有过行为的用户集合，既然要判断u对物品i的兴趣程度，当然是要从兴趣最接近的K个用户中挑出对i有过行为的，所以取交集。 <img src="http://latex.codecogs.com/gif.latex?w_{uv}">是用户u和用户v的兴趣相似度， <img src="http://latex.codecogs.com/gif.latex?r_{vi}">代表用户v对物品i的兴趣，因为使用的是单一行为的隐反馈数据，所以另其等于1。</p>
+<p>上图中，用户B对物品b和d没有过行为，我们来计算用户<strong>B对物品b和d的感兴趣程度</strong>。</p>
+<p>3.1 计算B 与 A C D的用户相似度，取前两名，显然是用户C（W=0.5）与用户A（W=0.41）<br>
+3.2 计算B对物品b的兴趣度：用户A和C都对b有过行为，所以累加，结果0.5+0.41=0.91<br>
+3.3 计算B对物品d的兴趣度：只有A对d有过行为，因此S(u, K)交N(i)只剩下A，结果0.41</p>
+<p><strong>4. Top-N分析法</strong><br>
+得到用户对物品的兴趣度后，我们使用Top-N推荐。</p>
+<p>TOP-N分析法就是通过TOP-N算法从研究对象中得到所需的N个数据，并从排序列表中选取最大或最小的N个数据，这就是一个TOP-N算法。即对所有物品进行P(u,i)计算兴趣度后进行降序，<strong>取前N个物品推荐给用户</strong>。</p>
+<h4 id="缺陷和改进"><a class="markdownIt-Anchor" href="#缺陷和改进"></a> 缺陷和改进</h4>
+<p>看似很完美了<sub>其实还有个问题</sub><br>
+试问：我和XXX都买了英语六级教程，那能说明咱们兴趣一样吗？不一定吧，买六级只是考试必备，对大部分人而言是一种无奈的操作。。。因此，我们要精确判断两人兴趣一样，<strong>不应该拿这些热门的物品做决策。冷门的产品更能说明问题</strong>。比如，我和XXX都买了java教程，那么应该就能说明我们有共同的兴趣了。所以有了一个更精确的公式：</p>
+<center><img src="http://latex.codecogs.com/gif.latex?w(uv) = \frac {\sum_{i\in N(u)\cap N(v)} \frac{1}{log1 + |N(i)|}}{\sqrt{|N(u)| |N(v)|}}"></center>
+<p>1/log1+|N(i)| 惩罚了用户u和用户v共同兴趣列表中热门物品对他们相似度的影响，使得结果更为精确。</p>
+<h3 id="基于物品的协同过滤算法"><a class="markdownIt-Anchor" href="#基于物品的协同过滤算法"></a> 基于物品的协同过滤算法</h3>
+<h4 id="概念-2"><a class="markdownIt-Anchor" href="#概念-2"></a> 概念</h4>
+<p>假设某天你购买了机器学习书籍，那么淘宝会给你推荐python书籍。因为机器经过判断得出这两者相似度很高，你既然会喜欢机器学习那么理应喜欢python。</p>
+<p><strong>基于物品的协同过滤算法就是给用户推荐那些和他们之前喜欢的物品相似的物品。</strong></p>
+<p>不过， ItemCF算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品之间的相似度。该算法认为，物品A和物品B具有很大的相似度是因为喜欢物品A的用户大都也喜欢物品B。</p>
+<p><strong>1. 计算物品间的相似度</strong></p>
+ <center><img src="http://latex.codecogs.com/gif.latex?w_{ij} = \frac{|N(i)\cap N(j)|}{\sqrt{|N(i)| |N(j)|}}"></center>
+<p><strong>2. 倒排</strong><br>
+跟上面一样，我们要过滤出物品i和j完全没关系的，不做不必要的计算。因为上面详细解释过，这里就粗略的画一下结果图，省略了中间那个物品对用户的图。<br>
+<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/cf3.png?raw=true" alt=""><br>
+通过计算得到Wab=0.82，Wac=0.58，Wad=0.58</p>
+<p><strong>3. 计算用户对物品的兴趣度</strong><br>
+用户u对物品j的感兴趣程度计算公式：</p>
+ <center><img src="http://latex.codecogs.com/gif.latex?p(u,j) = \sum_{i\in N(u)\cap S(j,K)} w_{ji}r_{ui}"></center> 
+<p>此公式与上面基于用户的公式非常相像。S(j,K)表示与j物品最相似的k个物品的集合。N(u)表示用户喜欢的物品集合。Wji表示物品之间的相似度。rui是用户u对物品i的兴趣。（对于隐反馈数据集，如果用户u对物品i有过行为，即可令rui=1。）</p>
+<p><strong>Top-N分析</strong><br>
+同上，计算出<img src="http://latex.codecogs.com/gif.latex?p(u,j)">之后，对其排序，取前几名作为推荐物品推荐给用户。</p>
+<h3 id="三种协同过滤比较"><a class="markdownIt-Anchor" href="#三种协同过滤比较"></a> 三种协同过滤比较：</h3>
+<p><strong>基于用户的协同过滤</strong>需要在线找用户和用户之间的相似度关系，计算复杂度肯定会比基于基于项目的协同过滤高。但是可以帮助用户找到<strong>新类别的有惊喜的物品</strong>。</p>
 <p>而<strong>基于项目的协同过滤</strong>，由于考虑的物品的相似性一段时间不会改变，因此可以<strong>很容易的离线计算，准确度一般也可以接受</strong>，但是推荐的多样性来说，就很难带给用户惊喜了。</p>
 <p>一般对于小型的推荐系统来说，基于项目的协同过滤肯定是主流。但是如果是大型的推荐系统来说，则可以考虑基于用户的协同过滤，当然更加可以考虑我们的第三种类型，基于模型的协同过滤。<strong>基于模型(model based)的协同过滤</strong>是目前<strong>最主流的</strong>协同过滤类型了，我们的一大堆机器学习算法也可以在这里找到用武之地。</p>
 <hr>
-<p>参考文章：<br><a href="https://zhuanlan.zhihu.com/p/25069367" target="_blank" rel="external">协同过滤推荐算法总结</a><br><a href="https://yq.aliyun.com/articles/539247" target="_blank" rel="external">基于用户（UserCF）和基于物品（ItemCF）协同过滤算法原理</a></p>
+<p>参考文章：<br>
+<a href="https://zhuanlan.zhihu.com/p/25069367" target="_blank" rel="external">协同过滤推荐算法总结</a><br>
+<a href="https://yq.aliyun.com/articles/539247" target="_blank" rel="external">基于用户（UserCF）和基于物品（ItemCF）协同过滤算法原理</a></p>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-08</span><i class="fa fa-tag"></i><a href="/tags/Machine-Learning/" title="Machine Learning" class="tag">Machine Learning </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2020/04/08/人工智能推荐系统（一） - 协同过滤算法介绍/,Fang-da,人工智能推荐系统（一） - 协同过滤算法介绍,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2020/04/08/如何在Markdown中插入数学公式/" title="如何在Markdown中插入数学公式" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
