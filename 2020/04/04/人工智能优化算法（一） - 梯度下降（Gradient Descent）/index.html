@@ -8,8 +8,8 @@
 <h3 id="梯度"><a class="markdownIt-Anchor" href="#梯度"></a> 梯度</h3>
 <p>梯度是一个向量，向量有方向，我们说的梯度方向，其实就是函数变化率最大的方向，这就是梯度的几何意义。比如函数f(x,y), 分别对x,y求偏导数，求得的梯度向量就是(∂f/∂x, ∂f/∂y)T,简称grad f(x,y)或者▽f(x,y)。对于在点(x0,y0)的具体梯度向量就是(∂f/∂x0, ∂f/∂y0)T.或者▽f(x0,y0)，如果是3个参数的向量梯度，就是(∂f/∂x, ∂f/∂y，∂f/∂z)T,以此类推。</p>
 <p><strong>梯度的公式如下：</strong></p>
-<p><img src="http://latex.codecogs.com/gif.latex?gradf(x_0,x_1,...,x_n)=(\frac{\partial}{\partial x_0},...,\frac{\partial}{\partial x_j},...,\frac{\partial}{\partial x_n})
-"></p>
+<center><img src="http://latex.codecogs.com/gif.latex?gradf(x_0,x_1,...,x_n)=(\frac{\partial}{\partial x_0},...,\frac{\partial}{\partial x_j},...,\frac{\partial}{\partial x_n})
+"></center>
 <p>这里注意三点：<br>
 　1）梯度是一个向量，即有方向有大小；<br>
 　2）梯度的方向是最大方向导数的方向；<br>
@@ -18,18 +18,18 @@
 <p><strong>梯度下降算法背后的原理：</strong><br>
 目标函数J(θ)关于参数θ的梯度是目标函数<strong>上升最快的方向</strong>。对于最小化优化问题，只需要将参数沿着梯度<strong>相反的方向</strong>前进一个步长，就可以实现目标函数的下降。即给定一个与参数 θ 有关的目标函数J(θ), 求使得 J 最小的参数θ.我们把这个步长又称为学习速率η。</p>
 <p><strong>参数更新公式如下：</strong></p>
-<img src="http://latex.codecogs.com/gif.latex?\theta \leftarrow \theta - \eta \cdot\nabla_\theta J(\theta)">
+<center><img src="http://latex.codecogs.com/gif.latex?\theta \leftarrow \theta - \eta \cdot\nabla_\theta J(\theta)"></center>
 <p>其中∇θJ(θ)是参数的梯度，根据计算目标函数J(θ)采用数据量的不同，梯度下降算法又可以分为<strong>批量梯度下降算法（Batch Gradient Descent）</strong>，<strong>随机梯度下降算法（Stochastic GradientDescent）<strong>和</strong>小批量梯度下降算法（Mini-batch Gradient Descent）</strong>。对于批量梯度下降算法，其J(θ)是在整个训练集上计算的，如果数据集比较大，可能会面临内存不足问题，而且其收敛速度一般比较慢。随机梯度下降算法是另外一个极端，J(θ)是针对训练集中的一个训练样本计算的，又称为在线学习，即得到了一个样本，就可以执行一次参数更新。所以其收敛速度会快一些，但是有可能出现目标函数值震荡现象，因为高频率的参数更新导致了高方差。小批量梯度下降算法是折中方案，选取训练集中一个小批量样本计算J(θ)，这样可以保证训练过程更稳定，而且采用批量训练方法也可以利用矩阵计算的优势。这是目前最常用的梯度下降算法。</p>
 <h3 id="一维梯度下降"><a class="markdownIt-Anchor" href="#一维梯度下降"></a> 一维梯度下降</h3>
-<p>我们先以简单的一维梯度下降为例，解释梯度下降算法可能降低目标函数值的原因。假设连续可导的函数 f:ℝ→ℝ 的输入和输出都是标量。给定绝对值足够小的数 ϵ ，根据泰勒展开公式，我们得到以下的近似：<br>
-<img src="http://latex.codecogs.com/gif.latex?f(x + \epsilon) \approx f(x) + \epsilon f'(x) "></p>
+<p>我们先以简单的一维梯度下降为例，解释梯度下降算法可能降低目标函数值的原因。假设连续可导的函数 f:ℝ→ℝ 的输入和输出都是标量。给定绝对值足够小的数 ϵ ，根据泰勒展开公式，我们得到以下的近似：</p>
+<center><img src="http://latex.codecogs.com/gif.latex?f(x + \epsilon) \approx f(x) + \epsilon f'(x) "></center>
 <p>这里 f′(x) 是函数 f 在 x 处的梯度。一维函数的梯度是一个标量，也称导数。<br>
-接下来，找到一个常数 η&gt;0 ，使得 <img src="http://latex.codecogs.com/gif.latex?\left|\eta f'(x)\right| ">足够小，那么可以将 ϵ 替换为 −ηf′(x) 并得到：<br>
-<img src="http://latex.codecogs.com/gif.latex?f(x - \eta f'(x)) \approx f(x) -  \eta f'(x)^2 "></p>
-<p>如果导数 f′(x)≠0 ，那么 ηf′(x)2&gt;0 ，所以<br>
-<img src="http://latex.codecogs.com/gif.latex?f(x - \eta f'(x)) \lesssim f(x)"></p>
-<p>这意味着，如果通过<br>
-<img src="http://latex.codecogs.com/gif.latex?x \leftarrow x - \eta f'(x)"></p>
+接下来，找到一个常数 η&gt;0 ，使得 <img src="http://latex.codecogs.com/gif.latex?\left|\eta f'(x)\right| ">足够小，那么可以将 ϵ 替换为 −ηf′(x) 并得到：</p>
+<center><img src="http://latex.codecogs.com/gif.latex?f(x - \eta f'(x)) \approx f(x) -  \eta f'(x)^2 "></center>
+<p>如果导数 f′(x)≠0 ，那么 ηf′(x)2&gt;0 ，所以</p>
+<center><img src="http://latex.codecogs.com/gif.latex?f(x - \eta f'(x)) \lesssim f(x)"></center>
+<p>这意味着，如果通过</p>
+<center><img src="http://latex.codecogs.com/gif.latex?x \leftarrow x - \eta f'(x)"></center>
 <p>来迭代 x ，函数 f(x) 的值可能会降低。因此在梯度下降中，我们先选取一个初始值 x 和常数 η&gt;0 ，然后不断通过上式来迭代 x ，直到达到停止条件，例如 <img src="http://latex.codecogs.com/gif.latex?f'(x)^2"><br>
 的值已足够小或迭代次数已达到某个值。</p>
 <p>下面我们以目标函数<img src="http://latex.codecogs.com/gif.latex?f(x)=x^2">为例来看一看梯度下降是如何工作的。虽然我们知道最小化 f(x) 的解为 x=0 ，这里依然使用这个简单函数来观察 x 是如何被迭代的。首先，导入本节实验所需的包或模块。</p>
