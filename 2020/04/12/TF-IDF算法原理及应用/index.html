@@ -1,28 +1,39 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>TF-IDF算法原理及应用 · Fang-da</title><meta name="description" content="有一篇很长的文章，我要用计算机提取它的关键词（Automatic Keyphrase extraction），完全不加以人工干预，请问怎样才能正确做到？
 这个问题涉及到数据挖掘、文本处理、信息检索等很多计算机前沿领域，但是出乎意料的是，有一个非常简单的经典算法，可以给出令人相当满意的结果，这就是TF"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>TF-IDF算法原理及应用</a></h3></div><div class="post-content"><p>有一篇很长的文章，我要用计算机提取它的关键词（Automatic Keyphrase extraction），完全不加以人工干预，请问怎样才能正确做到？</p>
 <p>这个问题涉及到数据挖掘、文本处理、信息检索等很多计算机前沿领域，但是出乎意料的是，有一个非常简单的经典算法，可以给出令人相当满意的结果，这就是TF-IDF(Term Frequency–Inverse Document Frequency)算法，由于其常被用于挖掘文章中的关键词，而且算法简单高效，被工业界广泛用于最开始的文本数据清洗。</p>
-<p>TF-IDF有两层意思，一层是”词频”（Term Frequency，缩写为TF），另一层是”逆文档频率”（Inverse Document Frequency，缩写为IDF）。</p>
-<h3 id="单词频率-TF-（Term-Frequency）"><a href="#单词频率-TF-（Term-Frequency）" class="headerlink" title="单词频率 TF （Term Frequency）"></a>单词频率 TF （Term Frequency）</h3><p>TF表示<strong>一个查询关键字中某一个单词在目标文档中出现的次数</strong>。举例说来，如果我们要查询 “Car Insurance”，那么对于每一个文档，我们都计算“Car” 这个单词在其中出现了多少次，“Insurance”这个单词在其中出现了多少次。这个就是 TF 的计算方法。</p>
-<p>TF 背后的隐含的假设是，查询关键字中的单词应该相对于其他单词更加重要，而文档的重要程度，也就是相关度，与单词在文档中出现的次数成正比。比如，“Car” 这个单词在文档 A 里出现了 5 次，而在文档 B 里出现了 20 次，那么 TF 计算就认为文档 B 可能更相关。</p>
+<p>TF-IDF有两层意思，一层是&quot;词频&quot;（Term Frequency，缩写为TF），另一层是&quot;逆文档频率&quot;（Inverse Document Frequency，缩写为IDF）。</p>
+<h3 id="单词频率-tf-term-frequency"><a class="markdownIt-Anchor" href="#单词频率-tf-term-frequency"></a> 单词频率 TF （Term Frequency）</h3>
+<p>TF表示<strong>某一个给定的词语在该文件中出现的频率</strong>。TF 背后的隐含的假设是，文档的重要程度，也就是相关度，与单词在文档中出现的频率成正比。比如，“Car” 这个单词在文档 A 里出现了的频率为 0.1，而在文档 B 里出现了 0.2，那么 TF 计算就认为“Car” 这个单词与文档 B 可能更相关。</p>
 <p>然而，信息检索工作者很快就发现，仅有 TF 不能比较完整地描述文档的相关度。因为语言的因素，有一些单词可能会比较自然地在很多文档中反复出现，比如英语中的 “The”、“An”、“But” 等等。这些词大多起到了链接语句的作用，是保持语言连贯不可或缺的部分。然而，如果我们要搜索 “How to Build A Car” 这个关键词，其中的 “How”、“To” 以及 “A” 都极可能在绝大多数的文档中出现，这个时候 TF 就无法帮助我们区分文档的相关度了。</p>
-<h3 id="逆文档频率-IDF（Inverse-Document-Frequency）"><a href="#逆文档频率-IDF（Inverse-Document-Frequency）" class="headerlink" title="逆文档频率 IDF（Inverse Document Frequency）"></a>逆文档频率 IDF（Inverse Document Frequency）</h3><p>就在这样的情况下应运而生。这里面的思路其实很简单，那就是我们需要去 “惩罚”（Penalize）那些出现在太多文档中的单词。</p>
-<p>也就是说，真正携带 “相关” 信息的单词仅仅出现在相对比较少，有时候可能是极少数的文档里。这个信息，很容易用 “文档频率” 来计算，也就是，有多少文档涵盖了这个单词。很明显，如果有太多文档都涵盖了某个单词，这个单词也就越不重要，或者说是这个单词就越没有信息量。因此，我们需要对 TF 的值进行修正，而 IDF 的想法是用 DF 的倒数来进行修正。倒数的应用正好表达了这样的思想，DF 值越大越不重要。</p>
+<h3 id="逆文档频率-idfinverse-document-frequency"><a class="markdownIt-Anchor" href="#逆文档频率-idfinverse-document-frequency"></a> 逆文档频率 IDF（Inverse Document Frequency）</h3>
+<p>IDF就在这样的情况下应运而生。这里面的思路其实很简单，那就是<strong>我们需要去 “惩罚”（Penalize）那些出现在太多文档中的单词</strong>。</p>
+<p>也就是说，真正携带 “相关” 信息的单词仅仅出现在相对比较少，有时候可能是极少数的文档里。这个信息，很容易用 “文档频率DF” 来计算，也就是，有多少文档涵盖了这个单词。很明显，<strong>如果有太多文档都涵盖了某个单词，这个单词也就越不重要，或者说是这个单词就越没有信息量</strong>。因此，我们需要对 TF 的值进行修正，而 IDF 的想法是用 DF 的倒数来进行修正。<strong>倒数的应用正好表达了这样的思想，DF 值越大越不重要</strong>。</p>
 <blockquote>
 <p>TF-IDF 算法主要适用于英文，中文首先要分词，分词后要解决多词一义，以及一词多义问题，这两个问题通过简单的tf-idf方法不能很好的解决。于是就有了后来的词嵌入方法，用向量来表征一个词。</p>
 </blockquote>
-<h3 id="TF-IDF计算步骤"><a href="#TF-IDF计算步骤" class="headerlink" title="TF-IDF计算步骤"></a>TF-IDF计算步骤</h3><p><strong>第一步，计算词频</strong><br><img src="http://latex.codecogs.com/gif.latex?tf_{i,j} =  \frac{n_{i,j}}{\sum_{k} n_{k,j}}"></p>
+<h3 id="tf-idf计算步骤"><a class="markdownIt-Anchor" href="#tf-idf计算步骤"></a> TF-IDF计算步骤</h3>
+<p><strong>第一步，计算词频</strong><br>
+<img src="http://latex.codecogs.com/gif.latex?tf_{i,j} =  \frac{n_{i,j}}{\sum_{k} n_{k,j}}"></p>
 <ul>
-<li>式子中 <img src="http://latex.codecogs.com/gif.latex?n_{i,j}"> 是该词在文件 <img src="http://latex.codecogs.com/gif.latex?d_{j}"> 中的出现次数  </li>
-<li>而分母则是在文件<img src="http://latex.codecogs.com/gif.latex?d_{j}">    中所有字词的出现次数之和。</li>
+<li>式子中 <img src="http://latex.codecogs.com/gif.latex?n_{i,j}"> 是该词在文件 <img src="http://latex.codecogs.com/gif.latex?d_{j}"> 中的出现次数</li>
+<li>而分母则是在文件<img src="http://latex.codecogs.com/gif.latex?d_{j}">	中所有字词的出现次数之和。</li>
 </ul>
-<p><strong>第二步，计算逆文档频率</strong><br><img src="http://latex.codecogs.com/gif.latex?idf_{i} =  lg\frac{|D|}{|\{ j:t_{i} \in d_{j}\} | + 1}"></p>
+<p><strong>第二步，计算逆文档频率</strong><br>
+<img src="http://latex.codecogs.com/gif.latex?idf_{i} =  lg\frac{|D|}{|\{ j:t_{i} \in d_{j}\} | + 1}"></p>
 <ul>
-<li>式子中|D|表示语料库中的文件总数  </li>
+<li>式子中|D|表示语料库中的文件总数</li>
 <li><img src="http://latex.codecogs.com/gif.latex?|\{ j:t_{i} \in d_{j}\} |"> 表示包含词语 <img src="http://latex.codecogs.com/gif.latex?t_{i}"> 的文件数目</li>
 </ul>
-<p><strong>第三步，计算TF-IDF</strong><br><img src="http://latex.codecogs.com/gif.latex?tfidf_{i,j} =  tf_{i,j} * idf_{i}"></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>假如一篇文件的总词语数是100个，而词语“火箭”出现了3次，火箭”一词在999份文件出现过，文件总数是10,000,000份的话。  </p>
-<p>“火箭”一词在该文件中的<strong>词频TF就是3/100=0.03</strong>。<br>“火箭”一词的<strong>文件频率IDF为lg（10,000,000 / (999 + 1)）=4</strong>。<br>所以<strong>TF-IDF的分数为0.03 * 4=0.12</strong>。</p>
+<p><strong>第三步，计算TF-IDF</strong><br>
+<img src="http://latex.codecogs.com/gif.latex?tfidf_{i,j} =  tf_{i,j} * idf_{i}"></p>
+<h3 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h3>
+<p>假如一篇文件的总词语数是100个，而词语“火箭”出现了3次，火箭”一词在999份文件出现过，文件总数是10,000,000份的话。</p>
+<p>“火箭”一词在该文件中的<strong>词频TF就是3/100=0.03</strong>。<br>
+“火箭”一词的<strong>文件频率IDF为lg（10,000,000 / (999 + 1)）=4</strong>。<br>
+所以<strong>TF-IDF的分数为0.03 * 4=0.12</strong>。</p>
 <hr>
-<p>参考文章：<br><a href="https://easyai.tech/ai-definition/tf-idf/" target="_blank" rel="external">TF-IDF</a><br><a href="https://zh.wikipedia.org/wiki/Tf-idf" target="_blank" rel="external">维基百科tf-idf</a><br><a href="https://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">TF-IDF与余弦相似性的应用（一）：自动提取关键词</a></p>
+<p>参考文章：<br>
+<a href="https://easyai.tech/ai-definition/tf-idf/" target="_blank" rel="external">TF-IDF</a><br>
+<a href="https://zh.wikipedia.org/wiki/Tf-idf" target="_blank" rel="external">维基百科tf-idf</a><br>
+<a href="https://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="external">TF-IDF与余弦相似性的应用（一）：自动提取关键词</a></p>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-12</span><i class="fa fa-tag"></i><a href="/tags/Machine-Learning/" title="Machine Learning" class="tag">Machine Learning </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2020/04/12/TF-IDF算法原理及应用/,Fang-da,TF-IDF算法原理及应用,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2020/04/10/回归评价指标 SSE、MSE、RMSE、MAE、R-Squared/" title="回归评价指标 SSE, MSE、RMSE、MAE、R-Squared" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
