@@ -8,9 +8,6 @@
 <h3 id="逆文档频率-idfinverse-document-frequency"><a class="markdownIt-Anchor" href="#逆文档频率-idfinverse-document-frequency"></a> 逆文档频率 IDF（Inverse Document Frequency）</h3>
 <p>IDF就在这样的情况下应运而生。这里面的思路其实很简单，那就是<strong>我们需要去 “惩罚”（Penalize）那些出现在太多文档中的单词</strong>。</p>
 <p>也就是说，真正携带 “相关” 信息的单词仅仅出现在相对比较少，有时候可能是极少数的文档里。这个信息，很容易用 “文档频率DF” 来计算，也就是，有多少文档涵盖了这个单词。很明显，<strong>如果有太多文档都涵盖了某个单词，这个单词也就越不重要，或者说是这个单词就越没有信息量</strong>。因此，我们需要对 TF 的值进行修正，而 IDF 的想法是用 DF 的倒数来进行修正。<strong>倒数的应用正好表达了这样的思想，DF 值越大越不重要</strong>。</p>
-<blockquote>
-<p>TF-IDF 算法主要适用于英文，中文首先要分词，分词后要解决多词一义，以及一词多义问题，这两个问题通过简单的tf-idf方法不能很好的解决。于是就有了后来的词嵌入方法，用向量来表征一个词。</p>
-</blockquote>
 <h3 id="tf-idf计算步骤"><a class="markdownIt-Anchor" href="#tf-idf计算步骤"></a> TF-IDF计算步骤</h3>
 <p><strong>第一步，计算词频</strong><br>
 <img src="http://latex.codecogs.com/gif.latex?tf_{i,j} =  \frac{n_{i,j}}{\sum_{k} n_{k,j}}"></p>
