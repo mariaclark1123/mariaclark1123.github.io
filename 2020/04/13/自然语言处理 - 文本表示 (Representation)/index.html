@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>自然语言处理 - 文本表示 (Representation) · Fang-da</title><meta name="description" content="文本表示即通过某种形式将文本字符串表示成计算机所能处理的数值向量。那么为什么要进行文本表示，根本原因是计算机不能直接对文本字符串进行处理，因此需要进行数值化或者向量化。不仅传统的机器学习算法需要这个过程，深度学习也需要这个过程，只不过这个过程可能直接包含在了深度学习网络中。同时，良好的文本表示形式也"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>自然语言处理 - 文本表示 (Representation)</a></h3></div><div class="post-content"><p>文本表示即通过某种形式将文本字符串表示成计算机所能处理的数值向量。那么为什么要进行文本表示，<strong>根本原因是计算机不能直接对文本字符串进行处理</strong>，因此需要进行数值化或者向量化。不仅传统的机器学习算法需要这个过程，深度学习也需要这个过程，只不过这个过程可能直接包含在了深度学习网络中。同时，良好的文本表示形式也可以极大的提升算法效果。</p>
+<h3 id="文本表示（Representation）"><a href="#文本表示（Representation）" class="headerlink" title="文本表示（Representation）"></a>文本表示（Representation）</h3><p>文本是一种非结构化的数据信息，是不可以直接被计算的。</p>
+<p><strong>文本表示的作用就是将这些非结构化的信息转化为结构化的信息</strong>，这样就可以针对文本信息做计算，来完成我们日常所能见到的文本分类，情感判断等任务。文本表示的方法有很多种，下面只介绍 3 类常见的文本表示方式：</p>
+<ol>
+<li>独热编码 | one-hot representation  </li>
+<li>整数编码  </li>
+<li>词嵌入 | word embedding</li>
+</ol>
+<h4 id="1-独热编码-one-hot-representation"><a href="#1-独热编码-one-hot-representation" class="headerlink" title="1. 独热编码 | one-hot representation"></a>1. 独热编码 | one-hot representation</h4><p>假如我们要计算的文本中一共出现了4个词：猫、狗、牛、羊。向量里每一个位置都代表一个词。所以用 one-hot 来表示就是：</p>
+<p>猫：［1，0，0，0］</p>
+<p>狗：［0，1，0，0］</p>
+<p>牛：［0，0，1，0］</p>
+<p>羊：［0，0，0，1］</p>
+<p>但是在实际情况中，文本中很可能出现成千上万个不同的词，这时候向量就会非常长。其中99%以上都是 0。</p>
+<p>one-hot 的缺点显而易见：</p>
+<ul>
+<li>无法表达词语之间的关系  </li>
+<li>这种过于稀疏的向量，导致计算和存储的效率都不高</li>
+</ul>
+<h4 id="2-整数编码"><a href="#2-整数编码" class="headerlink" title="2. 整数编码"></a>2. 整数编码</h4><p>这种方式也非常好理解，用一种数字来代表一个词，同样采用上面的例子我们可以得到4个词的整数编码：</p>
+<p>猫：1</p>
+<p>狗：2</p>
+<p>牛：3</p>
+<p>羊：4</p>
+<p>将句子里的每个词拼起来就是可以表示一句话的向量。整数编码的缺点如下：</p>
+<ul>
+<li>无法表达词语之间的关系  </li>
+<li>对于模型解释而言，整数编码可能具有挑战性。</li>
+</ul>
+<h4 id="3-词嵌入-Word-Embedding"><a href="#3-词嵌入-Word-Embedding" class="headerlink" title="3. 词嵌入 (Word Embedding)"></a>3. 词嵌入 (Word Embedding)</h4><p>Word embedding 是自然语言处理中的重要环节，它是一些语言处理模型的统称，并不具体指某种算法或模型。<strong>Word embedding 的任务是把词转换成可以计算的向量</strong>。从概念上讲，它涉及从每个单词一维的空间到具有更低维度的连续向量空间的数学嵌入。</p>
+<p><strong>生成这种映射的方法包括神经网络，单词共生矩阵的降维，概率模型，可解释的知识库方法，和术语的显式表示单词出现的上下文</strong>。目前两种主流的 word embedding 算法是Word2vec和GloVe。</p>
+<h4 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h4><p>这是一种基于统计方法来获得词向量的方法，他是 2013 年由谷歌的 Mikolov 提出了一套新的词嵌入方法。</p>
+<p>这种算法有2种训练模式：</p>
+<ul>
+<li>通过上下文来预测当前词</li>
+<li>通过当前词来预测上下文</li>
+</ul>
+<h4 id="GloVe"><a href="#GloVe" class="headerlink" title="GloVe"></a>GloVe</h4><p>GloVe 是对 Word2vec 方法的扩展，它将全局统计和 Word2vec 的基于上下文的学习结合了起来。</p>
+<hr>
+<p>参考文章：<br><a href="https://easyai.tech/ai-definition/word-embedding/" target="_blank" rel="external">词嵌入 | Word embedding</a><br><a href="https://www.jianshu.com/p/7bdbc1395406" target="_blank" rel="external">自然语言处理—-文本表示</a></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2020-04-13</span><i class="fa fa-tag"></i><a href="/tags/Machine-Learning/" title="Machine Learning" class="tag">Machine Learning </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2020/04/13/自然语言处理 - 文本表示 (Representation)/,Fang-da,自然语言处理 - 文本表示 (Representation),;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a role="navigation" href="/2020/04/12/TF-IDF算法原理及应用/" title="TF-IDF算法原理及应用" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
