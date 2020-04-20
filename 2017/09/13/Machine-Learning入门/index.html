@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>Machine Learning入门 · Fang-da</title><meta name="description" content="今天去听了Tübingen University(图宾格大学), Dr. Wolfgang Rosenstiel做的关于Applications of Machine Learning: From Brain-Machine-Interfaces to Autonomous Driving的semi"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Machine Learning入门</a></h3></div><div class="post-content"><p>今天去听了Tübingen University(图宾格大学), Dr. Wolfgang Rosenstiel做的关于Applications of Machine Learning: From Brain-Machine-Interfaces to Autonomous Driving的seminar，收获颇丰，不仅让我了解了一些Machine Learning，deep learning在自动驾驶领域里的pupil detection所发挥的作用，还让我对Machine<br>
+鉴于这学期也在学Machine Learning的课，也以写此教程来督促自己学习。</p>
+<h3 id="what-is-machine-learning"><a class="markdownIt-Anchor" href="#what-is-machine-learning"></a> What is Machine Learning？</h3>
+<ul>
+<li>
+<p>Althur Samuel(1959):<br>
+“Field of study that gives computers the ability to learn without being explicity programmed.”</p>
+</li>
+<li>
+<p>Tom Mitchell(1998):<br>
+“A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performances on T, as measured by P, improves with experience E”</p>
+</li>
+</ul>
+<p><strong>百度百科对于机器学习给了如下定义：</strong></p>
+<blockquote>
+<p>机器学习(Machine Learning, ML)是一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法复杂度理论等多门学科。专门研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构使之不断改善自身的性能。<br>
+它是人工智能的核心，是使计算机具有智能的根本途径，其应用遍及人工智能的各个领域，它主要使用归纳、综合而不是演绎。</p>
+</blockquote>
+<p>学习是人类具有的一种重要智能行为，但究竟什么是学习，长期以来却众说纷纭。社会学家、逻辑学家和心理学家都各有其不同的看法。</p>
+<p>比如，Langley（1996) 定义的机器学习是“机器学习是一门人工智能的科学，该领域的主要研究对象是人工智能，特别是如何在经验学习中改善具体算法的性能”。（Machine learning is a science of the artificial. The field’s main objects of study are artifacts, specifically algorithms that improve their performance with experience.’）</p>
+<p>Tom Mitchell的机器学习(1997)对信息论中的一些概念有详细的解释,其中定义机器学习时提到，“机器学习是对能通过经验自动改进的计算机算法的研究”。（Machine Learning is the study of computer algorithms that improve automatically through experience.）</p>
+<p>Alpaydin（2004）同时提出自己对机器学习的定义，“机器学习是用数据或以往的经验，以此优化计算机程序的性能标准。”（Machine learning is programming computers to optimize a performance criterion using example data or past experience.）</p>
+<p>尽管如此，为了便于进行讨论和估计学科的进展，有必要对机器学习给出定义，即使这种定义是不完全的和不充分的。顾名思义， 机器学习是研究如何使用机器来模拟人类学习活动的一门学科。稍为严格的提法是：**机器学习是一门研究机器获取新知识和新技能，并识别现有知识的学问。**这里所说的“机器”，指的就是计算机，电子计算机，中子计算机、光子计算机或神经计算机等等。</p>
+<p>机器能否象人类一样能具有学习能力呢？1959年美国的塞缪尔(Samuel)设计了一个下棋程序，这个程序具有学习能力，它可以在不断的对弈中改善自己的棋艺。4年后，这个程序战胜了设计者本人。又过了3年，这个程序战胜了美国一个保持8年之久的常胜不败的冠军。这个程序向人们展示了机器学习的能力，提出了许多令人深思的社会问题与哲学问题。</p>
+<p>机器的能力是否能超过人的，很多持否定意见的人的一个主要论据是：机器是人造的，其性能和动作完全是由设计者规定的，因此无论如何其能力也不会超过设计者本人。这种意见对不具备学习能力的机器来说的确是对的，可是对具备学习能力的机器就值得考虑了，因为这种机器的能力在应用中不断地提高，过一段时间之后，设计者本人也不知它的能力到了何种水平。</p>
+<h4 id="机器学习有下面几种定义"><a class="markdownIt-Anchor" href="#机器学习有下面几种定义"></a> 机器学习有下面几种定义：</h4>
+<ul>
+<li>
+<p>“机器学习是一门人工智能的科学，该领域的主要研究对象是人工智能，特别是如何在经验学习中改善具体算法的性能”。</p>
+</li>
+<li>
+<p>“机器学习是对能通过经验自动改进的计算机算法的研究”。</p>
+</li>
+<li>
+<p>“机器学习是用数据或以往的经验，以此优化计算机程序的性能标准。”</p>
+</li>
+<li>
+<p>一种经常引用的英文定义是：A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.</p>
+</li>
+</ul>
+<p><strong>Example code:</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在gcc-4.7.2下编译通过。</span></div><div class="line"><span class="comment">//命令行：g++-Wall-ansi-O2test.cpp-otest</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">(<span class="keyword">int</span> &amp;oper,<span class="keyword">const</span> <span class="keyword">bool</span> meth)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"><span class="comment">//meth为true则只判断1，为false则判断1或0</span></div><div class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cin</span> &gt;&gt; oper;</div><div class="line">		<span class="keyword">if</span>(meth &amp;&amp; oper == <span class="number">1</span>)</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(oper == <span class="number">0</span> || oper == <span class="number">1</span>)</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"输入错误，请重新输入。"</span> &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//判断参数</span></div><div class="line">		<span class="built_in">cin</span>.sync(); <span class="comment">//避免极端输入导致死循环</span></div><div class="line">		<span class="built_in">cin</span>.clear();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"1+1=2吗？那要看您怎么教我了，不要惊讶我会学习的"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">int</span> ladd,radd,aprs,rcnt(<span class="number">0</span>),wcnt(<span class="number">0</span>); <span class="comment">//定义输入与结果，正确次数与错误次数</span></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"开始学习……"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i(<span class="number">0</span>); i != <span class="number">10</span>; ++i)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"参数1（必须是1）："</span> &lt;&lt; flush; <span class="comment">//提示输入参数</span></div><div class="line">		input(ladd, <span class="literal">true</span>);</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"参数2（必须是1）："</span> &lt;&lt; flush;</div><div class="line">		input(radd, <span class="literal">true</span>);</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"结果："</span> &lt;&lt; (ladd+radd) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//输出结果</span></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"您对这满意吗（满意输入1，不满意输入0）："</span>&lt;&lt;flush; <span class="comment">//评价等级</span></div><div class="line">		input(aprs, <span class="literal">false</span>);</div><div class="line">		<span class="keyword">if</span>(aprs) <span class="comment">//判断用户评价</span></div><div class="line">			++rcnt;</div><div class="line">		<span class="keyword">else</span>	</div><div class="line">			++wcnt;</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"正确次数："</span> &lt;&lt; rcnt &lt;&lt; <span class="string">"错误次数："</span> &lt;&lt; wcnt &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//错误次数</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(rcnt &gt; wcnt) <span class="comment">//判断学习结果</span></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"主人告诉我1+1=2。"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(rcnt &lt; wcnt)</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"主人告诉我1+1!=2。"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"我不明白主人是什么意思。"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	intterm; <span class="comment">//退出部分</span></div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">"您对我的表现满意吗？满意请输入1不满意请输入0："</span> &lt;&lt; flush;</div><div class="line">	input(term, <span class="literal">false</span>);</div><div class="line">	<span class="keyword">if</span>(term)</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"谢谢我会继续努力学习"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"谢谢我会继续努力学习D"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="comment">// cin &gt;&gt; term;//在Windows上测试时启用</span></div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>本程序将根据您的评价判断执行结果 “1+1=2”<br>
+实际上仅用了最简单的 if else for 语句<br>
+这就是一个机器学习的例子，通过环境影响来进行学习。<br>
+通过本例我们不难看出，在人工错误的引导下，机器会给出错误的答案 1+1不等于2。<br>
+所以此类学习方法，一定要在正确引导下实践，否则会得到最坏的结果。<br>
+学习完毕后，计算机会记录本次学习结果，存入数据库，下次执行相应任务时，再将结果调出执行。</p>
+<h3 id="基于学习策略的分类"><a class="markdownIt-Anchor" href="#基于学习策略的分类"></a> 基于学习策略的分类</h3>
+<blockquote>
+<p>学习策略是指学习过程中系统所采用的推理策略。一个学习系统总是由学习和环境两部分组成。由环境（如书本或教师）提供信息，学习部分则实现信息转换，用能够理解的形式记忆下来，并从中获取有用的信息。在学习过程中，学生（学习部分）使用的推理越少，他对教师（环境）的依赖就越大，教师的负担也就越重。学习策略的分类标准就是根据学生实现信息转换所需的推理多少和难易程度来分类的，依从简单到复杂，从少到多的次序分为以下六种基本类型：</p>
+</blockquote>
+<p><strong>1）机械学习 (Rote learning)</strong><br>
+学习者无需任何推理或其它的知识转换，直接吸取环境所提供的信息。如塞缪尔的跳棋程序，纽厄尔和西蒙的LT系统。这类学习系统主要考虑的是如何索引存贮的知识并加以利用。系统的学习方法是直接通过事先编好、构造好的程序来学习，学习者不作任何工作，或者是通过直接接收既定的事实和数据进行学习，对输入信息不作任何的推理。</p>
+<p><strong>2）示教学习 (Learning from instruction或Learning by being told)</strong><br>
+学生从环境（教师或其它信息源如教科书等）获取信息，把知识转换成内部可使用的表示形式，并将新的知识和原有知识有机地结合为一体。所以要求学生有一定程度的推理能力，但环境仍要做大量的工作。教师以某种形式提出和组织知识，以使学生拥有的知识可以不断地增加。这种学习方法和人类社会的学校教学方式相似，学习的任务就是建立一个系统，使它能接受教导和建议，并有效地存贮和应用学到的知识。不少专家系统在建立知识库时使用这种方法去实现知识获取。示教学习的一个典型应用例是FOO程序。</p>
+<p><strong>3）演绎学习 (Learning by deduction)</strong><br>
+学生所用的推理形式为演绎推理。推理从公理出发，经过逻辑变换推导出结论。这种推理是&quot;保真&quot;变换和特化(specialization)的过程，使学生在推理过程中可以获取有用的知识。这种学习方法包含宏操作(macro-operation)学习、知识编辑和组块(Chunking)技术。演绎推理的逆过程是归纳推理。</p>
+<p><strong>4）类比学习 (Learning by analogy)</strong><br>
+利用二个不同领域（源域、目标域）中的知识相似性，可以通过类比，从源域的知识（包括相似的特征和其它性质）推导出目标域的相应知识，从而实现学习。类比学习系统可以使一个已有的计算机应用系统转变为适应于新的领域，来完成原先没有设计的相类似的功能。<br>
+类比学习需要比上述三种学习方式更多的推理。它一般要求先从知识源（源域）中检索出可用的知识，再将其转换成新的形式，用到新的状况（目标域）中去。类比学习在人类科学技术发展史上起着重要作用，许多科学发现就是通过类比得到的。例如著名的卢瑟福类比就是通过将原子结构（目标域）同太阳系（源域）作类比，揭示了原子结构的奥秘。</p>
+<p><strong>5）基于解释的学习 (Explanation-based learning, EBL)</strong><br>
+学生根据教师提供的目标概念、该概念的一个例子、领域理论及可操作准则，首先构造一个解释来说明为什该例子满足目标概念，然后将解释推广为目标概念的一个满足可操作准则的充分条件。EBL已被广泛应用于知识库求精和改善系统的性能。<br>
+著名的EBL系统有迪乔恩（G.DeJong）的GENESIS,米切尔（T.Mitchell）的LEXII和LEAP, 以及明顿（S.Minton）等的PRODIGY。</p>
+<p><strong>6）归纳学习 (Learning from induction)</strong><br>
+归纳学习是由教师或环境提供某概念的一些实例或反例，让学生通过归纳推理得出该概念的一般描述。这种学习的推理工作量远多于示教学习和演绎学习，因为环境并不提供一般性概念描述（如公理）。从某种程度上说，归纳学习的推理量也比类比学习大，因为没有一个类似的概念可以作为&quot;源概念&quot;加以取用。归纳学习是最基本的，发展也较为成熟的学习方法，在人工智能领域中已经得到广泛的研究和应用。</p>
+<h3 id="基于所获取知识的表示形式分类"><a class="markdownIt-Anchor" href="#基于所获取知识的表示形式分类"></a> 基于所获取知识的表示形式分类</h3>
+<blockquote>
+<p>学习系统获取的知识可能有：行为规则、物理对象的描述、问题求解策略、各种分类及其它用于任务实现的知识类型。<br>
+对于学习中获取的知识，主要有以下一些表示形式：</p>
+</blockquote>
+<p><strong>1）代数表达式参数</strong><br>
+学习的目标是调节一个固定函数形式的代数表达式参数或系数来达到一个理想的性能。</p>
+<p><strong>2）决策树</strong><br>
+用决策树来划分物体的类属，树中每一内部节点对应一个物体属性，而每一边对应于这些属性的可选值，树的叶节点则对应于物体的每个基本分类。</p>
+<p><strong>3）形式文法</strong><br>
+在识别一个特定语言的学习中，通过对该语言的一系列表达式进行归纳，形成该语言的形式文法。</p>
+<p><strong>4）产生式规则</strong><br>
+产生式规则表示为条件—动作对，已被极为广泛地使用。学习系统中的学习行为主要是：生成、泛化、特化（Specialization）或合成产生式规则。</p>
+<p><strong>5）形式逻辑表达式</strong><br>
+形式逻辑表达式的基本成分是命题、谓词、变量、约束变量范围的语句，及嵌入的逻辑表达式。</p>
+<p><strong>6）图和网络</strong><br>
+有的系统采用图匹配和图转换方案来有效地比较和索引知识。</p>
+<p><strong>7）框架和模式（schema）</strong><br>
+每个框架包含一组槽，用于描述事物（概念和个体）的各个方面。</p>
+<p><strong>8）计算机程序和其它的过程编码</strong><br>
+获取这种形式的知识，目的在于取得一种能实现特定过程的能力，而不是为了推断该过程的内部结构。</p>
+<p><strong>9）神经网络</strong><br>
+这主要用在联接学习中。学习所获取的知识，最后归纳为一个神经网络。</p>
+<p><strong>10）多种表示形式的组合</strong><br>
+有时一个学习系统中获取的知识需要综合应用上述几种知识表示形式。<br>
+根据表示的精细程度，可将知识表示形式分为两大类：泛化程度高的粗粒度符号表示、??泛化程度低的精粒度亚符号(sub-symbolic)表示。像决策树、形式文法、产生式规则、形式逻辑表达式、框架和模式等属于符号表示类；而代数表达式参数、图和网络、神经网络等则属亚符号表示类。</p>
+<h3 id="按应用领域分类"><a class="markdownIt-Anchor" href="#按应用领域分类"></a> 按应用领域分类</h3>
+<blockquote></blockquote>
+<p>最主要的应用领域有：专家系统、认知模拟、规划和问题求解、数据挖掘、网络信息服务、图象识别、故障诊断、自然语言理解、机器人和博弈等领域。<br>
+从机器学习的执行部分所反映的任务类型上看，大部分的应用研究领域基本上集中于以下两个范畴：分类和问题求解。</p>
+<p>1）分类任务要求系统依据已知的分类知识对输入的未知模式（该模式的描述）作分析，以确定输入模式的类属。相应的学习目标就是学习用于分类的准则（如分类规则）。</p>
+<p>2）问题求解任务要求对于给定的目标状态,??寻找一个将当前状态转换为目标状态的动作序列；机器学习在这一领域的研究工作大部分集中于通过学习来获取能提高问题求解效率的知识（如搜索控制知识，启发式知识等）。</p>
+<h3 id="综合分类"><a class="markdownIt-Anchor" href="#综合分类"></a> 综合分类</h3>
+<blockquote>
+<p>综合考虑各种学习方法出现的历史渊源、知识表示、推理策略、结果评估的相似性、研究人员交流的相对集中性以及应用领域等诸因素。将机器学习方法[1]  区分为以下六类：</p>
+</blockquote>
+<p><strong>1）经验性归纳学习 (empirical inductive learning)</strong><br>
+经验性归纳学习采用一些数据密集的经验方法（如版本空间法、ID3法，定律发现方法）对例子进行归纳学习。其例子和学习结果一般都采用属性、谓词、关系等符号表示。它相当于基于学习策略分类中的归纳学习，但扣除联接学习、遗传算法、加强学习的部分。</p>
+<p><strong>2）分析学习（analytic learning）</strong><br>
+分析学习方法是从一个或少数几个实例出发，运用领域知识进行分析。其主要特征为：</p>
+<ul>
+<li>推理策略主要是演绎，而非归纳；</li>
+<li>使用过去的问题求解经验（实例）指导新的问题求解，或产生能更有效地运用领域知识的搜索控制规则。</li>
+<li>分析学习的目标是改善系统的性能，而不是新的概念描述。分析学习包括应用解释学习、演绎学习、多级结构组块以及宏操作学习等技术。</li>
+</ul>
+<p><strong>3）类比学习</strong><br>
+它相当于基于学习策略分类中的类比学习。在这一类型的学习中比较引人注目的研究是通过与过去经历的具体事例作类比来学习，称为基于范例的学习(case_based learning)，或简称范例学习。</p>
+<p><strong>4）遗传算法（genetic algorithm）</strong><br>
+遗传算法模拟生物繁殖的突变、交换和达尔文的自然选择（在每一生态环境中适者生存）。它把问题可能的解编码为一个向量，称为个体，向量的每一个元素称为基因，并利用目标函数（相应于自然选择标准）对群体（个体的集合）中的每一个个体进行评价，根据评价值（适应度）对个体进行选择、交换、变异等遗传操作，从而得到新的群体。遗传算法适用于非常复杂和困难的环境，比如，带有大量噪声和无关数据、事物不断更新、问题目标不能明显和精确地定义，以及通过很长的执行过程才能确定当前行为的价值等。同神经网络一样，遗传算法的研究已经发展为人工智能的一个独立分支，其代表人物为霍勒德（J.H.Holland）。</p>
+<p><strong>5）联接学习</strong><br>
+典型的联接模型实现为人工神经网络，其由称为神经元的一些简单计算单元以及单元间的加权联接组成。</p>
+<p><strong>6）增强学习（reinforcement learning）</strong><br>
+增强学习的特点是通过与环境的试探性（trial and error）交互来确定和优化动作的选择，以实现所谓的序列决策任务。在这种任务中，学习机制通过选择并执行动作，导致系统状态的变化，并有可能得到某种强化信号（立即回报），从而实现与环境的交互。强化信号就是对系统行为的一种标量化的奖惩。系统学习的目标是寻找一个合适的动作选择策略，即在任一给定的状态下选择哪种动作的方法，使产生的动作序列可获得某种最优的结果（如累计立即回报最大）。<br>
+在综合分类中,经验归纳学习、遗传算法、联接学习和增强学习均属于归纳学习，其中经验归纳学习采用符号表示方式，而遗传算法、联接学习和加强学习则采用亚符号表示方式；分析学习属于演绎学习。<br>
+实际上，类比策略可看成是归纳和演绎策略的综合。因而最基本的学习策略只有归纳和演绎。<br>
+从学习内容的角度看，采用归纳策略的学习由于是对输入进行归纳，所学习的知识显然超过原有系统知识库所能蕴涵的范围,所学结果改变了系统的知识演绎闭包, 因而这种类型的学习又可称为知识级学习;而采用演绎策略的学习尽管所学的知识能提高系统的效率，但仍能被原有系统的知识库所蕴涵,即所学的知识未能改变系统的演绎闭包,因而这种类型的学习又被称为符号级学习。</p>
+<h3 id="学习形式分类"><a class="markdownIt-Anchor" href="#学习形式分类"></a> 学习形式分类</h3>
+<p>机器学习主要有三种学习形式：监督学习，无监督学习与半监督学习。</p>
+<p><strong>（1）监督学习(Supervised Learning)</strong></p>
+<p>监督学习，即在机械学习过程中提供对错指示。一般实在是数据组中包含最终结果（0，1）。通过算法让机器自我减少误差。这一类学习主要应用于分类和预测 (regression &amp; classify)。监督学习从给定的训练数据集中学习出一个函数，当新的数据到来时，可以根据这个函数预测结果。<br>
+监督学习的训练集要求是包括输入和输出，也可以说是特征和目标。训练集中的目标是由人<strong>标注</strong>的。常见的监督学习算法包括回归分析和统计分类。   监督学习的训练集要求是包括输入和输出，也就是特征和目标。如今机器学习已固有的监督学习算法有可以进行分类的，例如贝叶斯分类，SVM，ID3，C4.5以及分类决策树，以及现在最火热的人工神经网络，例如BP神经网络，RBF神经网络，Hopfield神经网络、深度信念网络和卷积神经网络等。</p>
+<p><strong>（2）无监督学习(Unsupervised Learning)</strong></p>
+<p>非监督学习又称归纳性学习（clustering）,与有监督学习相比，无监督学习的训练集的类标号是未知的，并且要学习的类的个数或集合可能事先不知道。常见的无监督学习算法包括聚类和关联，例如K均值法、Apriori算法，通过循环和递减运算(iteration&amp;descent)来减小误差，达到分类的目的。</p>
+<p><strong>（3）半监督学习(Semi-supervised Learning)</strong></p>
+<p>介于监督学习和无监督学习之间,例如EM算法。</p>
+<p>总结一句话，是否有监督，要看数据是否带有<strong>标签（label）</strong>，有标签则是监督学习，无标签则是无监督学习，少部分数据有标签，大部分数据无标签则为半监督学习。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-09-13</span><i class="fa fa-tag"></i><a href="/tags/Machine-Learning/" title="Machine Learning" class="tag">Machine Learning </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2017/09/13/Machine-Learning入门/,Fang-da,Machine Learning入门,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2017/09/13/Conjugate-prior-共轭先验/" title="Conjugate prior-共轭先验" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2017/09/12/励志的程序员们（二）/" title="励志的程序员们（二）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
