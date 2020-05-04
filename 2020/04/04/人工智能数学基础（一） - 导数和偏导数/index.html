@@ -3,10 +3,11 @@
 导数（Derivative）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的变化率，导数的本质是通过极限的概念对函数进行局部的线性逼近。
 物理学、几何学、经济学等学科中的一些重要概念都可以用导数来表示。如，导数可以表示运动物体的瞬时速度和"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>人工智能数学基础（一） - 导数和偏导数</a></h3></div><div class="post-content"><h3 id="导数derivative"><a class="markdownIt-Anchor" href="#导数derivative"></a> 导数（Derivative）</h3>
 <p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/%E5%AF%BC%E6%95%B0.jpeg?raw=true" alt="导数"></p>
-<p><strong>导数（Derivative）<strong>是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的</strong>变化率</strong>，导数的本质是通过极限的概念对函数进行局部的线性逼近。<br>
+<p>导数（Derivative）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的<strong>变化率</strong>，导数的本质是通过极限的概念对函数进行局部的线性逼近。<br>
 物理学、几何学、经济学等学科中的一些重要概念都可以用导数来表示。如，导数可以表示运动物体的瞬时速度和加速度、可以表示曲线在一点的斜率、还可以表示经济学中的边际和弹性。</p>
 <p><strong>导数的公式如下：</strong></p>
-<center><img src="http://latex.codecogs.com/gif.latex?f'(x_0)=\lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}=\lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} "> </center>
+<p><img src="http://latex.codecogs.com/gif.latex?f'(x_0)=\lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x}=\lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x} 
+"></p>
 <p>这里补充上图中的Δy、dy等符号的意义及关系如下：<br>
 Δx：x的变化量；<br>
 dx：x的变化量Δx趋于0时，则记作微元dx；<br>
@@ -19,8 +20,8 @@ dy：dy=f’(x0)dx，是切线的增量；<br>
 <p>一个多变量的函数（多元函数）y=f(x1,x2,…,xn) 的偏导数（Partial Derivativ）是它关于<strong>其中一个变量的导数</strong>，保持其他变量恒定（相对于全导数，在其中所有变量都允许变化）。偏导数的作用与价值在向量分析和微分几何以及机器学习领域中受到广泛认可。<br>
 （高阶偏导数：如果二元函数 z=f(x,y) 的偏导数 f’x(x,y) 与 f’y(x,y) 仍然可导，那么这两个偏导函数的偏导数称为 z=f(x,y) 的二阶偏导数。二元函数的二阶偏导数有四个：f&quot;xx，f&quot;xy，f&quot;yx，f&quot;yy。）</p>
 <p><strong>偏导数的公式如下：</strong></p>
-<center><img src="http://latex.codecogs.com/gif.latex?
-\frac{\partial}{\partial x_j}f(x_0,x_1,...,x_n)=\lim_{\Delta x \to 0}\frac{\Delta y}{\Delta x}= \lim_{\Delta x \to 0} \frac{f(x_0,...,x_j+\Delta x,...,x_n) - f(x_0,...,x_j,...,x_n)}{\Delta x} "></center>
+<p><img src="http://latex.codecogs.com/gif.latex?
+\frac{\partial}{\partial x_j}f(x_0,x_1,...,x_n)=\lim_{\Delta x \to 0}\frac{\Delta y}{\Delta x}= \lim_{\Delta x \to 0} \frac{f(x_0,...,x_j+\Delta x,...,x_n) - f(x_0,...,x_j,...,x_n)}{\Delta x} "></p>
 <p>∂: 是一个弯曲的d，称为<strong>偏导数符号</strong>。为了把它与字母d区分，∂有时读作“der”、“del”、“dah”或“偏”，而不是“dee”</p>
 <p>详细内容参见<a href="https://zh.wikipedia.org/wiki/%E5%81%8F%E5%AF%BC%E6%95%B0" target="_blank" rel="external">维基百科-偏导数</a></p>
 <h3 id="方向导数"><a class="markdownIt-Anchor" href="#方向导数"></a> 方向导数</h3>
