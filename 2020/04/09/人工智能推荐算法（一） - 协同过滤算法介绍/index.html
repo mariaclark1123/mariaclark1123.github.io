@@ -27,6 +27,7 @@
 <p><strong>（2）Jaccard相似度算法（Jaccard coefficient）计算用户间的相似度</strong></p>
  <center><img src="http://latex.codecogs.com/gif.latex?w_{uv} = \frac{|N(u)\cap N(v)|}{|N(u)\cup N(v)|}"></center>
 <p>N(u)表示用户u感兴趣的物品集合，N(v)表示用户v感兴趣的物品集合，简单解释一下这个公式，分母是两个集合的并集的绝对值，分子是集合的交集的绝对值，<strong>集合绝对值是这个集合中元素的个数</strong>。</p>
+ <center><img src="http://latex.codecogs.com/gif.latex?w_{uv} = \frac{|\{a,b,d\}\cap \{a,c\}|}{|\{a,b,d\}\cup \{a,c\}|} = \frac{1}{4}"></center>
 <p><strong>2. 倒排</strong></p>
 <p>但是这么简单粗暴是有问题的，因为很多用户其实完全没有共同喜好的，也就是分子会为0。这么多无意义的计算会给我们增加很大的开销，所以我们应该先做一个预处理，把有关联的用户筛选出来，只计算这些有关联的用户的兴趣相似度。倒排法有效的为我们解决了这个问题：</p>
 <p>2.1 首先将用户–物品表转化为物品–用户表（倒排表）<br>
