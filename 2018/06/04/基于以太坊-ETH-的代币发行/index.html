@@ -1,48 +1,33 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>基于以太坊(ETH)的代币发行 · Fang-da</title><meta name="description" content="ERC20 Token
-ERC20是以太坊定义的一个代币标准.要求我们在实现代币的时候必须要遵守的协议，如指定代币名称、总量、实现代币交易函数等，只有支持了协议才能被以太坊钱包支持.
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="mariaclark1123@outlook.com"><title>基于以太坊(ETH)的代币发行 · Fang-da</title><meta name="description" content="ERC20 TokenERC20是以太坊定义的一个代币标准.要求我们在实现代币的时候必须要遵守的协议，如指定代币名称、总量、实现代币交易函数等，只有支持了协议才能被以太坊钱包支持.
 本攻略手把手教你做一个ERC20 Token,非代码,没有编程基础的人也可以轻松发币.
- 工具
-MetaMask插件"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title=""><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>基于以太坊(ETH)的代币发行</a></h3></div><div class="post-content"><h4 id="erc20-token"><a class="markdownIt-Anchor" href="#erc20-token"></a> ERC20 Token</h4>
-<p>ERC20是以太坊定义的一个代币标准.要求我们在实现代币的时候必须要遵守的协议，如指定代币名称、总量、实现代币交易函数等，只有支持了协议才能被以太坊钱包支持.</p>
+工具MetaMask插件(ch"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/judy.jpg" style="width:160px;"><h3 title><a href="/" style="font-family:medium-ui-sans-serif-text-font,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Open Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;">Fang-da</a></h3><div class="description"><p>生活一分一秒的过, 你的斗志不是燃烧一刻，而是要每分每秒的燃烧, 即使不燃烧，至少不能让它熄灭。你要的斗志从来都不在逆境中, 而在你做成一件事后这件事能给你带来的成就感以及未来, 那是能指导你每分每秒都燃烧的火药。</p></div></div></div><ul class="social-links"><li><a href="http://facebook.com/mariaclark1123"><i class="fa fa-facebook"></i></a></li><li><a href="http://github.com/mariaclark1123"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"></a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Theme from Fangda&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/albums">相册</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>基于以太坊(ETH)的代币发行</a></h3></div><div class="post-content"><h4 id="ERC20-Token"><a href="#ERC20-Token" class="headerlink" title="ERC20 Token"></a>ERC20 Token</h4><p>ERC20是以太坊定义的一个代币标准.要求我们在实现代币的时候必须要遵守的协议，如指定代币名称、总量、实现代币交易函数等，只有支持了协议才能被以太坊钱包支持.</p>
 <p><strong>本攻略手把手教你做一个ERC20 Token,非代码,没有编程基础的人也可以轻松发币.</strong></p>
-<h4 id="工具"><a class="markdownIt-Anchor" href="#工具"></a> 工具</h4>
-<p>MetaMask插件(chrome浏览器)<br>
-Tokenfactory</p>
-<h4 id="step-1-准备工作"><a class="markdownIt-Anchor" href="#step-1-准备工作"></a> Step 1 准备工作</h4>
-<p>在chrome浏览器安装MetaMask插件<br>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_1.png?raw=true" alt=""></p>
+<h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>MetaMask插件(chrome浏览器)<br>Tokenfactory</p>
+<h4 id="Step-1-准备工作"><a href="#Step-1-准备工作" class="headerlink" title="Step 1 准备工作"></a>Step 1 准备工作</h4><p>在chrome浏览器安装MetaMask插件<br><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_1.png?raw=true" alt></p>
 <p><strong>metamask除了是一个简单的钱包外，它可以使得Chrome浏览器变身成以太坊浏览器，让使用者通过浏览器和以太坊智能合约互动</strong></p>
-<h4 id="step-2-账号设置"><a class="markdownIt-Anchor" href="#step-2-账号设置"></a> Step 2 账号设置</h4>
-<p><strong>2-1</strong></p>
-<p>点击chrome浏览器右上角metamask图标，同意隐私条款和使用条款<br>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_2.png?raw=true" width="250" hegiht="500" align="center"></p>
+<h4 id="Step-2-账号设置"><a href="#Step-2-账号设置" class="headerlink" title="Step 2 账号设置"></a>Step 2 账号设置</h4><p><strong>2-1</strong></p>
+<p>点击chrome浏览器右上角metamask图标，同意隐私条款和使用条款<br><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_2.png?raw=true" width="250" hegiht="500" align="center"></p>
 <p><strong>2-2</strong></p>
-<p>设置metamask账号</p>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_3.png?raw=true" width="250" hegiht="500" align="center">
+<p>设置metamask账号 </p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_3.png?raw=true" width="250" hegiht="500" align="center"></p>
 <p><strong>2-3</strong></p>
 <p>记下助记词，到这里metamask账号就创建好了</p>
-<h4 id="step-3-发行代币"><a class="markdownIt-Anchor" href="#step-3-发行代币"></a> Step 3 发行代币</h4>
-<p><strong>3-1</strong></p>
+<h4 id="Step-3-发行代币"><a href="#Step-3-发行代币" class="headerlink" title="Step 3 发行代币"></a>Step 3 发行代币</h4><p><strong>3-1</strong></p>
 <p>点击右上角更多，复制你的eth地址到剪贴板，并向你的地址转0.05个eth（根据gas费用不同可能会有波动）用于发行代币和转账费用.</p>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_4.png?raw=true" width="250" hegiht="500" align="center">
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_4.png?raw=true" width="250" hegiht="500" align="center"></p>
 <p><strong>3-2</strong></p>
-<p>进入下面的网站填写发行信息：</p>
-<p><a href="http://tokenfactory.surge.sh/#/factory" target="_blank" rel="external">http://tokenfactory.surge.sh/#/factory</a></p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_5.png?raw=true" alt=""></p>
+<p>进入下面的网站填写发行信息：    </p>
+<p><a href="http://tokenfactory.surge.sh/#/factory" target="_blank" rel="noopener">http://tokenfactory.surge.sh/#/factory</a></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_5.png?raw=true" alt></p>
 <p>注意这里我们的发行总量为最小单位的总量，如果想要发型总量为2100w，最小单位为0.0001的token，需要在总量处填写210,000,000,000，最小单位填写4（小数点后4位），点击create token。</p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_6.png?raw=true" alt=""></p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_6.png?raw=true" alt></p>
 <p>如图提示我们本次发行代币的矿工费最多是0.02eth, 你可以通过改变Gas价格来调高或者降低费用，gas价格越高，执行速度越快。</p>
 <p><strong>点击提交，恭喜你发行了自己代币！剩下的就是等待了。</strong></p>
-<h4 id="4-交易代币"><a class="markdownIt-Anchor" href="#4-交易代币"></a> 4 交易代币</h4>
-<p><strong>4-1</strong></p>
-<p>在<a href="https://etherscan.io/" target="_blank" rel="external">https://etherscan.io/</a> 查询你的metamask eth地址，找到所有交易中contract creation这一笔。<br>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_7.png?raw=true" alt=""></p>
-<p>点击contract creation之后页面如下，复制你的token contract address。<br>
-<img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_8.png?raw=true" alt=""></p>
+<h4 id="4-交易代币"><a href="#4-交易代币" class="headerlink" title="4 交易代币"></a>4 交易代币</h4><p><strong>4-1</strong></p>
+<p>在<a href="https://etherscan.io/" target="_blank" rel="noopener">https://etherscan.io/</a> 查询你的metamask eth地址，找到所有交易中contract creation这一笔。<br><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_7.png?raw=true" alt></p>
+<p>点击contract creation之后页面如下，复制你的token contract address。<br><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_8.png?raw=true" alt></p>
 <p><strong>4-2</strong></p>
-<p>将复制好的地址贴进 <a href="http://tokenfactory.surge.sh/#/tokensearch" target="_blank" rel="external">http://tokenfactory.surge.sh/#/tokensearch</a><br>
-后点击确认，会进入如下页面：</p>
-<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_9.png?raw=true" alt=""></p>
-<p>第一个窗口是转账窗口，现在你可以向其他用户转账啦！<br>
-(注: 由于发行的是在以太坊上的erc-20代币，所以转账需要花费eth)</p>
+<p>将复制好的地址贴进 <a href="http://tokenfactory.surge.sh/#/tokensearch" target="_blank" rel="noopener">http://tokenfactory.surge.sh/#/tokensearch</a><br>后点击确认，会进入如下页面：</p>
+<p><img src="https://github.com/mariaclark1123/mariaclark1123.github.io/blob/master/srcimage/token_9.png?raw=true" alt></p>
+<p>第一个窗口是转账窗口，现在你可以向其他用户转账啦！<br>(注: 由于发行的是在以太坊上的erc-20代币，所以转账需要花费eth)</p>
 </div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2018-06-04</span><i class="fa fa-tag"></i><a href="/tags/BlockChain/" title="BlockChain" class="tag">BlockChain </a></div></div></div></div><div class="share"><div class="evernote"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></div><div class="weibo"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></div><div class="twitter"><a href="http://twitter.com/home?status=,http://yoursite.com/2018/06/04/基于以太坊-ETH-的代币发行/,Fang-da,基于以太坊(ETH)的代币发行,;" class="fa fa-twitter"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a role="navigation" href="/2018/06/05/公链和私链/" title="公链和私链" class="btn">上一篇</a></li><li class="next pagbuttons"><a role="navigation" href="/2018/04/18/走进遗传算法（二）/" title="走进遗传算法（二）" class="btn">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>
